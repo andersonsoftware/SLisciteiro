@@ -17,7 +17,8 @@
     <!-- Bootstrap core CSS -->
     <link href="<%=Constantes.CSS%>bootstrap.min.css" rel="stylesheet">
 
-
+ 	<!-- Custom styles for this template -->
+    <link href="<%=Constantes.CSS%>signin.css" rel="stylesheet">
 
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
     <!--[if lt IE 9]><script src="<%=Constantes.JS%>ie8-responsive-file-warning.js"></script><![endif]-->
@@ -35,8 +36,8 @@
 </head>
 <body>
  <div class="container">
-	<form class="form-signin" id="form_cadastro" method="post" action="cadastrar">
-		<h2 class="form-signin-heading">Por favor, faça seu cadastro!</h2>
+	<form class="" id="form_cadastro" method="post" action="cadastrar">
+		<h2>Por favor, faça seu cadastro!</h2>
 		<div class="form-group">
 			<label>Nome: </label>
 			<input type="text" id="nome" placeholder="Digite o nome da empresa" class="form-control" name="nome" required autofocus> 
