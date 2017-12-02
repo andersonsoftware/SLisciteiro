@@ -1,4 +1,4 @@
-package Diagrama de Classe;
+package model;
 
 public enum EnumCargoFuncionario {
 
@@ -11,5 +11,13 @@ public enum EnumCargoFuncionario {
 	public int SUPERVISOR = 3;
 
 	private int cargo;
+
+	public int getCargo() {
+		return cargo;
+	}
+
+	public void setCargo(int cargo) {
+		this.cargo = cargo;
+	}
 
 }
