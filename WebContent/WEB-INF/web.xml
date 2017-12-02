@@ -4,4 +4,13 @@
   <welcome-file-list>
     <welcome-file>login.jsp</welcome-file>    
   </welcome-file-list>
+  <jsp-config>
+    <jsp-property-group>
+      <description>Configuração do header e footer do template</description>
+      <url-pattern>/view/*</url-pattern>
+      <include-prelude>/WEB-INF/template/header.jspf</include-prelude>
+      <include-prelude>/WEB-INF/template/menu.jspf</include-prelude>
+      <include-coda>/WEB-INF/template/footer.jspf</include-coda>
+    </jsp-property-group>
+  </jsp-config>
 </web-app>

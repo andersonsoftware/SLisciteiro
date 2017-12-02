@@ -1,0 +1,14 @@
+<%@page import="util.Constantes" %>
+<br>
+<br>
+    <footer class="footer">
+      <div class="container">
+        <p class="text-muted">SLisciteiro</p>
+      </div>
+    </footer>    
+	<script type="text/javascript" src="<%=Constantes.JS%>jquery.min.js"></script>
+	<script type="text/javascript" src="<%=Constantes.JS%>holder.min.js"></script>
+	<script type="text/javascript" src="<%=Constantes.JS%>ie10-viewport-bug-workaround.js"></script>
+	<script type="text/javascript" src="<%=Constantes.JS%>bootstrap.min.js"></script>
+</body>
+</html>
