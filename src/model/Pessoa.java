@@ -1,7 +1,13 @@
 package model;
 
 public class Pessoa {
-
+	private int id;
+	private String nome;
+	private String telefone;
+	private String email;
+	private String endereco;
+	private Conta conta;
+	
 	public int getId() {
 		return id;
 	}
@@ -49,17 +55,5 @@ public class Pessoa {
 	public void setConta(Conta conta) {
 		this.conta = conta;
 	}
-
-	private int id;
-
-	private String nome;
-
-	private String telefone;
-
-	private String email;
-
-	private String endereco;
-
-	private Conta conta;
 
 }

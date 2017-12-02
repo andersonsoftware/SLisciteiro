@@ -1,21 +1,17 @@
 package model;
 
 public class Funcionario extends Pessoa {
-
+	private EnumCargoFuncionario cargo;
+	private String rg;
+	private String cpf;
+	private int matricula;
+	
 	public EnumCargoFuncionario getCargo() {
 		return cargo;
 	}
 
 	public void setCargo(EnumCargoFuncionario cargo) {
 		this.cargo = cargo;
-	}
-
-	public Conta getConta() {
-		return conta;
-	}
-
-	public void setConta(Conta conta) {
-		this.conta = conta;
 	}
 
 	public String getRg() {
@@ -40,20 +36,6 @@ public class Funcionario extends Pessoa {
 
 	public void setMatricula(int matricula) {
 		this.matricula = matricula;
-	}
-
-	private EnumCargoFuncionario cargo;
-
-	private Conta conta;
-
-	private String rg;
-
-	private String cpf;
-
-	private int matricula;
-
-	public boolean isCargo(EnumCargoFuncionario enumCargoFuncionario) {
-		return false;
 	}
 
 }

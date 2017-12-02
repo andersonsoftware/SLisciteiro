@@ -1,6 +1,11 @@
 package model;
 
 public class Produto {
+	private int id;
+	private String nome;
+	private String descricao;
+	private Categoria categoria;
+	private float valor_estimado;
 
 	public int getId() {
 		return id;
@@ -41,15 +46,4 @@ public class Produto {
 	public void setValor_estimado(float valor_estimado) {
 		this.valor_estimado = valor_estimado;
 	}
-
-	private int id;
-
-	private String nome;
-
-	private String descricao;
-
-	private Categoria categoria;
-
-	private float valor_estimado;
-
 }

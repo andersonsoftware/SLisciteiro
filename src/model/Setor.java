@@ -1,13 +1,11 @@
 package model;
 
 public class Setor {
-
 	private int id;
-
 	private int nome;
-
 	private GerenteSetor gerente;
-
+	private float teto_gastos;
+	
 	public int getId() {
 		return id;
 	}
@@ -39,7 +37,5 @@ public class Setor {
 	public void setTeto_gastos(float teto_gastos) {
 		this.teto_gastos = teto_gastos;
 	}
-
-	private float teto_gastos;
 
 }

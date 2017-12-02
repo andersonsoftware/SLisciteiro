@@ -3,6 +3,11 @@ package model;
 import java.util.List;
 
 public class Fornecedor extends Pessoa {
+	private String cnpj;
+	private String endereco;
+	private Float pontuacao;
+	private ContaBancaria contaBancaria;
+	private List<Categoria> categorias;
 
 	public String getCnpj() {
 		return cnpj;
@@ -43,15 +48,4 @@ public class Fornecedor extends Pessoa {
 	public void setCategorias(List<Categoria> categorias) {
 		this.categorias = categorias;
 	}
-
-	private String cnpj;
-
-	private String endereco;
-
-	private Float pontuacao;
-
-	private ContaBancaria contaBancaria;
-
-	private List<Categoria> categorias;
-
 }

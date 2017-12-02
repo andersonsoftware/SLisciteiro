@@ -1,6 +1,10 @@
 package model;
 
 public class ContaBancaria {
+	private String tipo;
+	private String banco;
+	private String agencia;
+	private String conta;
 
 	public String getTipo() {
 		return tipo;
@@ -33,13 +37,4 @@ public class ContaBancaria {
 	public void setConta(String conta) {
 		this.conta = conta;
 	}
-
-	private String tipo;
-
-	private String banco;
-
-	private String agencia;
-
-	private String conta;
-
 }

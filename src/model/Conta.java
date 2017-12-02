@@ -1,6 +1,9 @@
 package model;
 
 public class Conta {
+	private String login;
+	private String senha;
+	private Pessoa Pessoa;
 
 	public String getLogin() {
 		return login;
@@ -25,11 +28,4 @@ public class Conta {
 	public void setPessoa(Pessoa pessoa) {
 		Pessoa = pessoa;
 	}
-
-	private String login;
-
-	private String senha;
-
-	private Pessoa Pessoa;
-
 }

@@ -3,7 +3,12 @@ package model;
 import java.util.List;
 
 public class Licitacao {
-
+	private int id;
+	private String descricao;
+	private float valor_estimado;
+	private Funcionario funcionario;
+	private List<Produto> produtos;
+	
 	public int getId() {
 		return id;
 	}
@@ -43,15 +48,4 @@ public class Licitacao {
 	public void setProdutos(List<Produto> produtos) {
 		this.produtos = produtos;
 	}
-
-	private int id;
-
-	private String descricao;
-
-	private float valor_estimado;
-
-	private Funcionario funcionario;
-
-	private List<Produto> produtos;
-
 }
