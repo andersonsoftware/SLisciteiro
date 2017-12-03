@@ -1,4 +1,6 @@
 <%@page import="util.Constantes"%>
+<%@page import="model.EnumCargoFuncionario"%>
+<%@page import="model.Funcionario"%>
 <nav class="navbar navbar-inverse navbar-fixed-top">
 	<div class="container-fluid">
 		<div class="navbar-header">
@@ -11,7 +13,12 @@
 			</button>
 			<a class="navbar-brand" href="<%=Constantes.PUBLICDIR+"home.jsp" %>">SLiciteiro</a>
 		</div>
-
+		<div id="navbar" class="navbar-collapse collapse">
+			<ul class="nav navbar-nav navbar-right">
+				<li><a href="<%=Constantes.PUBLICDIR%>liscitacao.jsp">Liscitações</a></li>
+				<li><a href="<%=Constantes.URL%>logout">Logout</a></li>
+			</ul>
+		</div>
 	</div>
 </nav>
 <br>

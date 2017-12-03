@@ -50,10 +50,38 @@
 		</div>
 		<div class="form-group">
 			<input type="submit" value="Entrar" class="btn btn-success" >
-			<a href="cadastro.jsp"><input type="button" value="Cadastrar" class="btn btn-primary" ></a>
+			<a href="cadastro.jsp"><input type="button" value="Seja um Fornecedor" class="btn btn-primary" ></a>
 		</div> 		
+			
+		<%
+			if (request.getParameter("deslog") == null) {						
+				if (request.getParameter("erroLogInvalid") != null) {
+		%>
+		
+		<div class="alert alert-danger" role="alert">
+		  <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+		  <span class="sr-only">Erro:</span>
+		  Login inválido, tente novamente.
+		</div> 
+		<%
+		 		} else if (request.getParameter("erroNotLog") != null) {
+		 %>
+ 		<div class="alert alert-danger" role="alert">
+		  <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+		  <span class="sr-only">Erro:</span>
+		  Você não está logado: Faça o login para acessar o sistema.
+		</div> 		 
+		<%
+ 				}
+ 			}else{ 				
+ 		%>
+ 		<script>
+			parent.window.location.href="login.jsp";
+		</script>
+ 		<%
+ 			}
+ %>
 	</form>
-	
 	</div>
 </body>
 </html>

@@ -9,7 +9,16 @@ public class Funcionario extends Pessoa {
 	public EnumCargoFuncionario getCargo() {
 		return cargo;
 	}
-
+	
+	public void setCargo(int cargo) {
+		if (EnumCargoFuncionario.GERENTE_COMPRAS.getCargo() == cargo)
+			this.cargo = EnumCargoFuncionario.GERENTE_COMPRAS;
+		else if (EnumCargoFuncionario.GERENTE_SETOR.getCargo() == cargo)
+			this.cargo = EnumCargoFuncionario.GERENTE_SETOR;
+		else if (EnumCargoFuncionario.SUPERVISOR.getCargo() == cargo)
+			this.cargo = EnumCargoFuncionario.SUPERVISOR;
+	}
+	
 	public void setCargo(EnumCargoFuncionario cargo) {
 		this.cargo = cargo;
 	}
@@ -37,5 +46,8 @@ public class Funcionario extends Pessoa {
 	public void setMatricula(int matricula) {
 		this.matricula = matricula;
 	}
-
+	
+	public boolean isCargo(EnumCargoFuncionario enumCargoFuncionario ){
+		return this.getCargo().equals(enumCargoFuncionario);		
+	}
 }

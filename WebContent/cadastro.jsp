@@ -34,6 +34,7 @@
 
 
 </head>
+      <script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
 <body>
  <div class="container">
 	<form class="" id="form_cadastro" method="post" action="cadastrar">
@@ -59,27 +60,29 @@
 			<input type="text" id="endereco" placeholder="Digite o endereço da empresa" class="form-control" name="endereco" required autofocus>
 		</div>
 		<div class="form-group">
-			<label>Agência Bancária: </label>
-			<input type="text" id="endereco" placeholder="Digite o endereço da empresa" class="form-control" name="endereco" required autofocus>
-		</div>
-		<div class="form-group">
-			<label>Conta Bancária: </label>
-			<input type="text" id="endereco" placeholder="Digite o endereço da empresa" class="form-control" name="endereco" required autofocus>
-		</div>
-		<div class="form-group">
 			<label>Banco: </label>
-			<select>
+			<select name="banco" id="banco" required class="form-control">
+				<option value="">--- Selecione um Banco ---</option>
 				<option value="BB">Banco do Brasil</option>
 				<option value="BRA">Bradesco</option>
 				<option value="CA">Caixa</option>
 				<option value="SA">Santander</option>
 				<option value="IT">Itaú</option>
 			</select>
-			<label>Tipo: </label>
-			<select>
+			<label>Tipo de Conta: </label>
+			<select name="tipo_conta" required class="form-control">
+				<option value="">--- Selecione um Tipo ---</option>
 				<option value="CC">Conta Corrente</option>
 				<option value="CP">Conta Poupança</option>
 			</select>
+		</div>
+		<div class="form-group">
+			<label>Agência Bancária: </label>
+			<input type="text" id="agencia" placeholder="Digite o endereço da empresa" class="form-control" name="endereco" disabled required autofocus>
+		</div>
+		<div class="form-group">
+			<label>Conta Bancária: </label>
+			<input type="text" id="conta" placeholder="Digite o endereço da empresa" class="form-control" name="endereco" disabled required autofocus>
 		</div>
 		<div class="form-group">
 			<label>Login: </label>
@@ -91,7 +94,7 @@
 		</div>
 		<div class="form-group">
 			<label>Confirmação de senha: </label>
-			<input id="senha_confirmacao" type="password" name="senha_confirmacao" placeholder="Digite a senha novamente" class="form-control" required>
+			<input id="senha_confirmacao" type="password" name="senha_confirmacao" placeholder="Digite a senha novamente" class="form-control"  required>
 		</div>
 		<div class="form-group">
 			<input type="submit" value="Cadastrar" class="btn btn-success" >
@@ -100,5 +103,8 @@
 
 	</form>
 	</div>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.10/jquery.mask.js"></script>
+	<script type="text/javascript" src="<%=Constantes.JS%>mask.js"></script>
+	<script type="text/javascript" src="<%=Constantes.JS%>validacao.js"></script>
 </body>
 </html>

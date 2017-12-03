@@ -13,4 +13,30 @@
       <include-coda>/WEB-INF/template/footer.jspf</include-coda>
     </jsp-property-group>
   </jsp-config>
+  
+  <!-- Servlet Login -->
+  <servlet>
+    <servlet-name>ServletLogin</servlet-name>
+    <servlet-class>
+  		controller.Login
+  	</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ServletLogin</servlet-name>
+    <url-pattern>/login</url-pattern>
+  </servlet-mapping>
+  
+  <!-- Servlet Logout -->
+  <servlet>
+    <servlet-name>ServletLogout</servlet-name>
+    <servlet-class>
+  		controller.Logout
+  	</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ServletLogout</servlet-name>
+    <url-pattern>/logout</url-pattern>
+  </servlet-mapping>
+  
+  
 </web-app>

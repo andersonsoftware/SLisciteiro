@@ -3,7 +3,15 @@ package model;
 public class Conta {
 	private String login;
 	private String senha;
-	private Pessoa Pessoa;
+	private Pessoa pessoa;
+
+	public Conta(){}
+	
+	public Conta(String login, String senha, Pessoa pessoa) {
+		this.login = login;
+		this.senha = senha;
+		this.pessoa = pessoa;
+	}
 
 	public String getLogin() {
 		return login;
@@ -22,10 +30,10 @@ public class Conta {
 	}
 
 	public Pessoa getPessoa() {
-		return Pessoa;
+		return pessoa;
 	}
 
 	public void setPessoa(Pessoa pessoa) {
-		Pessoa = pessoa;
+		this.pessoa = pessoa;
 	}
 }
