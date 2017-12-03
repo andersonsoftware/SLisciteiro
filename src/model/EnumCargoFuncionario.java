@@ -18,5 +18,16 @@ public enum EnumCargoFuncionario {
 	public void setCargo(int cargo) {
 		this.cargo = cargo;
 	}
+	
+	public String toString(){
+		if(EnumCargoFuncionario.GERENTE_COMPRAS.equals(this.cargo)){
+			return "GERENTE DE COMPRAS";
+		}else if(EnumCargoFuncionario.GERENTE_SETOR.equals(this.cargo)){
+			return "GERENTE DE SETOR";
+		}else if(EnumCargoFuncionario.SUPERVISOR.equals(this.cargo)){
+			return "SUPERVISOR";
+		}
+		return null;
+	}
 
 }

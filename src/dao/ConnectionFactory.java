@@ -7,10 +7,12 @@ import java.sql.SQLException;
 public class ConnectionFactory {
 	public static Connection getConnection() throws SQLException {		
 		try {
-			Class.forName("org.postgresql.Driver");
+			Class.forName("org.postgresql.Driver");//For�ando a inicializacao do drive
+			return DriverManager.getConnection("jdbc:postgresql://localhost:5432/slisciteiro", "postgres","postgres");
+		}catch(SQLException e) {
+			throw new RuntimeException(e);
 		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		}
-		return DriverManager.getConnection("jdbc:postgresql://localhost:5432/slisciteiro", "slisciteiro", "12345678");
+			throw new RuntimeException(e);
+		}	
 	}
 }
