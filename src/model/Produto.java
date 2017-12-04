@@ -7,6 +7,28 @@ public class Produto {
 	private Categoria categoria;
 	private float valor_estimado;
 
+	public Produto() {
+		super();
+	}
+
+	
+	public Produto(int id, String nome, String descricao, Categoria categoria, float valor_estimado) {
+		super();
+		this.id = id;
+		this.nome = nome;
+		this.descricao = descricao;
+		this.categoria = categoria;
+		this.valor_estimado = valor_estimado;
+	}
+
+
+	public Produto(int id, String nome) {
+		super();
+		this.id = id;
+		this.nome = nome;
+	}
+
+
 	public int getId() {
 		return id;
 	}

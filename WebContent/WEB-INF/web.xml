@@ -38,5 +38,16 @@
     <url-pattern>/logout</url-pattern>
   </servlet-mapping>
   
+   <!-- Servlet Licitacao -->
+  <servlet>
+    <servlet-name>ServletLicitacao</servlet-name>
+    <servlet-class>
+  		controller.CadastrarLicitacao
+  	</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ServletLicitacao</servlet-name>
+    <url-pattern>/view/supervisor/cadastrar_liscitacao</url-pattern>
+  </servlet-mapping>
   
 </web-app>

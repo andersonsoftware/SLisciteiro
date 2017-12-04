@@ -44,20 +44,10 @@ $(document).ready(function() {
 
 $(document).ready(function($) {
 	$("#money").maskMoney({
+		selectAllOnFocus: true,
+		prefix: "R$",
 		decimal : ",",
 		thousands : "."
 	});
-});
+})
 
-var qtd_linha = 0;
-$(function(){
-	$('#add_produto').click(function() {
-		qtd_linha++;
-		var options = '<tr><td>'+$('#produto').val()+'</td><td>'+$('#quantidade_produto').val()+'</td><td> <input type="button" value="Delete" class="btn btn-danger form-control" onclick="deleteRow(this.parentNode.parentNode.rowIndex)"> </td></tr>'
-		$('#conteudo_tab_produtos').append(options);
-	});
-});
-
-function deleteRow(i){
-    document.getElementById('table_produtos').deleteRow(i)
-}

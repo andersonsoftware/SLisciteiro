@@ -14,5 +14,6 @@
 	<script type="text/javascript" src="<%=Constantes.JS%>jquery.maskMoney.min.js"></script>
 	<script type="text/javascript" src="<%=Constantes.JS%>jquery.maskedinput-1.2.2.js"></script>
 	<script type="text/javascript" src="<%=Constantes.JS%>mask.js"></script>
+	<script type="text/javascript" src="<%=Constantes.JS%>demo.js"></script>
 </body>
 </html>
