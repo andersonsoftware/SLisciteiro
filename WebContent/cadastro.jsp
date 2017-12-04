@@ -78,11 +78,11 @@
 		</div>
 		<div class="form-group">
 			<label>Agência Bancária: </label>
-			<input type="text" id="agencia" placeholder="Digite o endereço da empresa" class="form-control" name="endereco" disabled required autofocus>
+			<input type="text" id="agencia" placeholder="Digite o endereço da empresa" class="form-control" name="agencia" disabled required autofocus>
 		</div>
 		<div class="form-group">
 			<label>Conta Bancária: </label>
-			<input type="text" id="conta" placeholder="Digite o endereço da empresa" class="form-control" name="endereco" disabled required autofocus>
+			<input type="text" id="conta" placeholder="Digite o endereço da empresa" class="form-control" name="conta" disabled required autofocus>
 		</div>
 		<div class="form-group">
 			<label>Login: </label>

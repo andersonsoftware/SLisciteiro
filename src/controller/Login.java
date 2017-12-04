@@ -20,7 +20,7 @@ public class Login extends HttpServlet {
 	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		HttpSession sessionVerify = (HttpSession)(((HttpServletRequest)request).getSession());
-		String pagina = Constantes.PUBLICDIR+"home.jsp";
+		String pagina = Constantes.SUPERVISORDIR+"home.jsp";
 		HttpSession session = request.getSession();
 		Funcionario pessoa = new Funcionario();
 		pessoa.setCargo(1);

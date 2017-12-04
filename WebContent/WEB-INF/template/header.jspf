@@ -26,13 +26,15 @@
     <!--[if lt IE 9]><script src="<%=Constantes.JS%>ie8-responsive-file-warning.js"></script><![endif]-->
     <script src="<%=Constantes.JS%>ie-emulation-modes-warning.js"></script>
     
+    <script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
+    
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
       <script src="<%=Constantes.JS%>html5shiv.min.js"></script>
       <script src="<%=Constantes.JS%>respond.min.js"></script>
     <![endif]-->
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title>SLisciteiro</title>	
+	<title>SLisciteiro</title>
 </head>
 <body>
 	<div class="container">	
