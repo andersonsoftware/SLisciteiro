@@ -50,4 +50,28 @@
     <url-pattern>/view/supervisor/cadastrar_liscitacao</url-pattern>
   </servlet-mapping>
   
+    <!-- Servlet Cadastra Categoria -->
+  <servlet>
+    <servlet-name>ServletCadCategoria</servlet-name>
+    <servlet-class>
+  		controller.CadastrarCategoria
+  	</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ServletCadCategoria</servlet-name>
+    <url-pattern>/view/supervisor/cadastrar_categoria</url-pattern>
+  </servlet-mapping>
+  
+     <!-- Servlet Cadastra Produto -->
+  <servlet>
+    <servlet-name>ServletCadProduto</servlet-name>
+    <servlet-class>
+  		controller.CadastrarProduto
+  	</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ServletCadProduto</servlet-name>
+    <url-pattern>/view/supervisor/cadastrar_produto</url-pattern>
+  </servlet-mapping>
+  
 </web-app>

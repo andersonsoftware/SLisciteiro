@@ -5,9 +5,8 @@
 		if (request.getParameter("licitacaoRealizada") != null) {
 	%>
 
-	<div class="alert alert-danger" role="alert">
-		<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-		<span class="sr-only">Produto</span> Cadastrado com sucesso.
+	<div class="alert alert-success" role="alert">
+		Licitação Cadastrada com sucesso.
 	</div>
 	<%
 		}
@@ -33,17 +32,6 @@
 			</select>
 		</div>
 		<div class="form-group">
-			<table class="table table-striped table-bordered table-hover table-condensed" id="table_produtos">
-				<thead id="cab_tab">
-					<th>Produto</th>
-					<th>Quantidade</th>
-					<th>Ação</th>		
-				</thead>
-				<tbody id="conteudo_tab_produtos">					
-				</tbody>
-			</table>
-		</div>
-		<div class="form-group">
 			<div class="row">
 				<div class="col-xs-6">
 					<label>Produto: </label> <select name="produto"
@@ -61,13 +49,24 @@
 			<input type="button" value="Adicionar Produtos" id="add_produto" class="btn btn-primary form-control">
 		</div>
 		<div class="form-group">
+			<table class="table table-striped table-bordered table-hover table-condensed" id="table_produtos">
+				<thead id="cab_tab">
+					<th>Produto</th>
+					<th>Quantidade</th>
+					<th>Ação</th>		
+				</thead>
+				<tbody id="conteudo_tab_produtos">					
+				</tbody>
+			</table>
+		</div>
+		<div class="form-group">
 			<label>Valor Estimado: </label> <input type="text"
 				id="money" 
 				placeholder="Digite a descrição da liscitação" class="form-control"
 				name="valor_estimado"  autofocus>
 		</div>
 		<div class="form-group">
-			<input type="submit" value="Cadastrar" onclick="addListToSessoin();" class="btn btn-success" >
+			<input type="submit" value="Cadastrar" onclick="addListReturn();" class="btn btn-success" >
 		</div> 	
 	</form>
 </div>

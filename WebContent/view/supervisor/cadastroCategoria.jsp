@@ -1,11 +1,21 @@
 <%@page import="java.util.HashMap"%>
 <%@page import="java.util.Set"%>
 <div class="container">
+	<%
+		if (request.getParameter("cadCategoria") != null) {
+	%>
+
+	<div class="alert alert-success" role="alert">
+		Categoria <%=request.getParameter("cadCategoria")%> cadastrada com sucesso.
+	</div>
+	<%
+		}
+	%>
 	<form id="formDoacaoItem" method="post" action="cadastrar_categoria">
 		<h2>Cadastro de Categoria</h2>
 			<div class="form-group">
 				<label for="nome">Nome:</label> <input type="Text" id="nome"
-					name="nome" class="form-control">
+					name="nome" class="form-control" required>
 			</div>
 		<div class="form-group">
 			<input type="submit" value="Cadastrar" class="btn btn-success" >

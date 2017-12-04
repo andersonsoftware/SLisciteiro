@@ -13,20 +13,15 @@ function deleteRow(i){
 }
 
 var pedidos = [];
-function addListToSessoin(){
+function addListReturn(){
 	 $('#table_produtos tbody tr').each(function () {
-	        // Recuperar todas as colunas da linha percorida
 	        var colunas = $(this).children();
-	        
-	        // Criar objeto para armazenar os dados (com JSON essa tarefa fica mais simples)
 	        var pedido = {
-	            'produto': $(colunas[0]).text(), // valor da coluna Produto
-	            'quantidade': $(colunas[1]).text() // Valor da coluna Quantidade
+	            'produto': $(colunas[0]).text(), 
+	            'quantidade': $(colunas[1]).text()
 	        };
 	        pedidos.push(pedido);
 	        document.getElementById('lista_produtos').value = JSON.stringify(pedidos); 
-	        console.log(JSON.stringify(pedidos));
-	        //$('#conteudo_tab_produtos').append(options);
 	    });
 }
 
