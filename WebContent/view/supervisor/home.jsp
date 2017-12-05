@@ -2,6 +2,16 @@
 <%@page import="java.util.ArrayList"%>
 <div class="container">
 	<%
+		if(session.getAttribute("listaProdutos")!= null && !session.getAttribute("listaProdutos").equals("")){
+		%>
+			<script type="text/javascript">
+			$(document).ready(function(){
+				var data = <%=session.getAttribute("listaProdutos")%>
+				carregarProdSession(data);
+			});
+			</script>
+		<% 
+		}
 		if (request.getParameter("licitacaoRealizada") != null) {
 	%>
 

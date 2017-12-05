@@ -62,6 +62,18 @@
     <url-pattern>/view/supervisor/cadastrar_categoria</url-pattern>
   </servlet-mapping>
   
+  <!-- Servlet Adicionar Produtos na sessão -->
+  <servlet>
+    <servlet-name>ServletSetProdSession</servlet-name>
+    <servlet-class>
+  		controller.SetSessionProdutos
+  	</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ServletSetProdSession</servlet-name>
+    <url-pattern>/view/supervisor/set_session_produtos</url-pattern>
+  </servlet-mapping>
+  
      <!-- Servlet Cadastra Produto -->
   <servlet>
     <servlet-name>ServletCadProduto</servlet-name>
@@ -73,5 +85,5 @@
     <servlet-name>ServletCadProduto</servlet-name>
     <url-pattern>/view/supervisor/cadastrar_produto</url-pattern>
   </servlet-mapping>
-  
+
 </web-app>
