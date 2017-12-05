@@ -3,7 +3,8 @@ $(function(){
 		var options = '<tr><td>'+$('#produto').val()+'</td><td>'+$('#quantidade_produto').val()+'</td><td> <input type="button" value="Delete" class="btn btn-danger form-control" onclick="deleteRow(this.parentNode.parentNode.rowIndex)"> </td></tr>'
 		$('#conteudo_tab_produtos').append(options);
 		addListReturn();
-		$.getJSON('set_session_produtos?jsonProdutos='+document.getElementById('lista_produtos').value);
+		var encoding_uri = encodeURI(document.getElementById('lista_produtos').value);
+		$.getJSON('set_session_produtos?jsonProdutos='+encoding_uri);
 	});
 });
 
@@ -19,7 +20,8 @@ function carregarProdSession(data){
 function deleteRow(i){
     document.getElementById('table_produtos').deleteRow(i)
     addListReturn();
-    $.getJSON('set_session_produtos?jsonProdutos='+document.getElementById('lista_produtos').value);
+    var encoding_uri = encodeURI(document.getElementById('lista_produtos').value);
+    $.getJSON('set_session_produtos?jsonProdutos='+encoding_uri);
 }
 
 var produtos = [];
