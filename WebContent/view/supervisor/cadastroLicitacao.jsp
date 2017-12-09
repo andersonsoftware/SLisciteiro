@@ -51,7 +51,7 @@
 					List<Categoria> categorias = new CategoriaDAO().listar();
 					for (Categoria categoria : categorias) {
 				%>
-				<option class="carregarProdCategoria" value="<%=categoria.getId()%>"><%=categoria.getNome()%></option>
+				<option value="<%=categoria.getId()%>"><%=categoria.getNome()%></option>
 				<%
 					}
 				%>

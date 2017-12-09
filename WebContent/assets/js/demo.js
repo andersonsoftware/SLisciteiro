@@ -55,7 +55,7 @@ $(function(){
 		addListReturn();
 		var encoding_uri = encodeURI(document.getElementById('lista_produtos').value);
 		$.getJSON('set_session_produtos?jsonProdutos='+encoding_uri);
-		$.getJSON('carregarProdutos?idCategoria='+1, function(data){
+		$.getJSON('carregarProdutos?idCategoria='+$('#categoria').val(), function(data){
 			if(data !== null){
 				var options = '<option value="" disabled="disabled" selected="selected">Selecione um produto</option>';	
 				for (var i = 0; i < data.length; i++) {
