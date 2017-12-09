@@ -12,7 +12,7 @@ public class PessoaDAO extends DAO{
 	public int addAndGetId(Pessoa pessoa){
 		try {			
 			String sql = "INSERT INTO public.\"Pessoa\" (nome, email, endereco, telefone) VALUES (?, ?, ?, ?) RETURNING id_pessoa;";
-			PreparedStatement stmt = getConn().prepareStatement(sql);	
+			PreparedStatement stmt = getConnection().prepareStatement(sql);	
 			stmt.setString(1, pessoa.getNome());
 			stmt.setString(2, pessoa.getEmail());
 			stmt.setString(3, pessoa.getEndereco());
@@ -30,7 +30,7 @@ public class PessoaDAO extends DAO{
 	public int getIdByEmail(String email){
 		try {
 			String sql = "SELECT id FROM public.\"Pessoa\" WHERE email = ?;";			
-			PreparedStatement stmt = getConn().prepareStatement(sql);
+			PreparedStatement stmt = getConnection().prepareStatement(sql);
 			stmt.setString(1, email);
 			ResultSet rs = stmt.executeQuery();
 			rs.next();
@@ -42,30 +42,35 @@ public class PessoaDAO extends DAO{
 		}
 	}
 	
-	public Pessoa getById(int id){
+	public Pessoa buscarPorId(int id){
 		try {
-			String sql = "SELECT * FROM public.\"Pessoa\" WHERE id_pessoa = ? LIMIT 1;";			
-			PreparedStatement stmt = getConn().prepareStatement(sql);
+			super.open();
+			String sql = "SELECT * FROM Pessoa WHERE id_pessoa = ?;";			
+			PreparedStatement stmt = super.getConnection().prepareStatement(sql);
 			stmt.setInt(1, id);					
-			ResultSet rs = stmt.executeQuery();
-			rs.next();		
-			Pessoa pessoa = new Pessoa();
-			pessoa.setId(id);
-			pessoa.setNome(rs.getString("nome"));
-			pessoa.setEmail(rs.getString("email"));
-			pessoa.setEndereco(rs.getString("endereco"));
-			pessoa.setTelefone(rs.getString("telefone"));
-			close(rs, stmt);			
+			ResultSet rs = stmt.executeQuery();					
+			Pessoa pessoa = null;
+			if (rs.next()) {
+				pessoa = new Pessoa();
+				pessoa.setId(id);
+				pessoa.setNome(rs.getString("nome"));
+				pessoa.setEmail(rs.getString("email"));
+				pessoa.setEndereco(rs.getString("endereco"));
+				pessoa.setTelefone(rs.getString("telefone"));
+			}			
+			super.close(rs, stmt);			
 			return pessoa;
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
+		}finally {
+			super.close();
 		}
 	}
 	
 	public void editar(Pessoa pessoa){
 		try {
 			String sql = "UPDATE public.\"Pessoa\" SET nome = ?, email = ?, endereco = ?, telefone = ? WHERE id_pessoa = ?;";
-			PreparedStatement stmt = getConn().prepareStatement(sql);
+			PreparedStatement stmt = getConnection().prepareStatement(sql);
 			stmt.setString(1, pessoa.getNome());
 			stmt.setString(2, pessoa.getEmail());
 			stmt.setString(3, pessoa.getEndereco());
@@ -81,7 +86,7 @@ public class PessoaDAO extends DAO{
 	public void excluir(int pessoa_id){
 		try {			
 			String sql = "DELETE FROM public.\"Pessoa\" WHERE id_pessoa = ?;";
-			PreparedStatement stmt = getConn().prepareStatement(sql);
+			PreparedStatement stmt = getConnection().prepareStatement(sql);
 			stmt.setInt(1, pessoa_id);					
 			stmt.execute();
 			stmt.close();
@@ -92,7 +97,7 @@ public class PessoaDAO extends DAO{
 
 	public Pessoa getPessoa(String login, String senha) {
 		try {
-			PreparedStatement stmt = getConn().prepareStatement(
+			PreparedStatement stmt = getConnection().prepareStatement(
 					"SELECT * FROM public.\"Pessoa\" as P CROSS JOIN public.\"Conta\" as C WHERE P.id_pessoa = C.id_pessoa AND login = ? AND senha = ?;");
 			stmt.setString(1, login);			
 			stmt.setString(2, Crypter.crypt(senha));

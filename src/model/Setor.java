@@ -2,7 +2,7 @@ package model;
 
 public class Setor {
 	private int id;
-	private int nome;
+	private String nome;
 	private GerenteSetor gerente;
 	private float teto_gastos;
 	
@@ -14,11 +14,11 @@ public class Setor {
 		this.id = id;
 	}
 
-	public int getNome() {
+	public String getNome() {
 		return nome;
 	}
 
-	public void setNome(int nome) {
+	public void setNome(String nome) {
 		this.nome = nome;
 	}
 

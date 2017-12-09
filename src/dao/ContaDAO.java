@@ -10,7 +10,7 @@ public class ContaDAO extends DAO {
 	
 	public boolean autenticar(String login, String senha) throws SQLException {
 		try {
-			PreparedStatement stmt = getConn().prepareStatement(
+			PreparedStatement stmt = this.getConnection().prepareStatement(
 					"SELECT COUNT(*) AS quantidade FROM public.\"Conta\" WHERE login = ? AND senha = ?;");
 			stmt.setString(1, login);
 			stmt.setString(2, Crypter.crypt(senha));
@@ -26,7 +26,7 @@ public class ContaDAO extends DAO {
 	
 	public Conta getByPessoaId(int pessoa_id) {
 		try {
-			PreparedStatement stmt = getConn().prepareStatement(
+			PreparedStatement stmt = this.getConnection().prepareStatement(
 					"SELECT * AS quantidade FROM public.\"Conta\" WHERE pessoa_id = ?;");
 			stmt.setInt(1, pessoa_id);			
 			ResultSet rs = stmt.executeQuery();
@@ -35,7 +35,7 @@ public class ContaDAO extends DAO {
 			conta.setLogin(rs.getString("login"));
 			conta.setSenha(rs.getString("senha"));
 			conta.setTipoConta(rs.getInt("tipo_conta"));
-			conta.setPessoa(new PessoaDAO().getById(pessoa_id));
+			conta.setPessoa(new PessoaDAO().buscarPorId(pessoa_id));
 			close(rs, stmt);
 			return conta;
 		} catch (SQLException e) {
@@ -45,7 +45,7 @@ public class ContaDAO extends DAO {
 		
 	public void add(Conta conta, int pessoa_id) {
 		try {
-			PreparedStatement stmt = getConn().prepareStatement(
+			PreparedStatement stmt = this.getConnection().prepareStatement(
 					"INSERT INTO public.\"Conta\" VALUES (?, ?, ?);");
 			stmt.setString(1, conta.getLogin());
 			stmt.setString(2, conta.getSenha());
@@ -61,7 +61,7 @@ public class ContaDAO extends DAO {
 	public void editar(Conta conta){
 		try {
 			String sql = "UPDATE public.\"Conta\" SET login = ?, senha = ? WHERE pessoa_id = ?;";		
-			PreparedStatement stmt = getConn().prepareStatement(sql);
+			PreparedStatement stmt = this.getConnection().prepareStatement(sql);
 			stmt.setString(1, conta.getLogin());			
 			stmt.setString(2, conta.getSenha());
 			stmt.setInt(3, conta.getPessoa().getId());							

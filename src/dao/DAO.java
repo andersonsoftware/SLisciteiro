@@ -5,39 +5,47 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+public abstract class DAO {
 
-public abstract class DAO{
+	private Connection connection;
 
-	private Connection conn;
-	
-	public DAO(){
+	protected void open() {
 		try {
-			conn = ConnectionFactory.getConnection();
+			this.setConnection(ConnectionFactory.getConnection());
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			throw new RuntimeException(e);
 		}
-	}		
+	}
 
-	protected void close(ResultSet rs, PreparedStatement stmt){
+	protected void close(ResultSet rs, PreparedStatement stmt) {
 		try {
 			rs.close();
 			stmt.close();
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
-		}		
+		}
 	}
-	
-	public void close(){
+
+	public void close() {
 		try {
-			getConn().close();
+			this.getConnection().close();
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
-		}		
+		}
 	}
-	
-	public Connection getConn() {
-		return conn;
+
+	/**
+	 * @return the connection
+	 */
+	public Connection getConnection() {
+		return connection;
+	}
+
+	/**
+	 * @param connection the connection to set
+	 */
+	public void setConnection(Connection connection) {
+		this.connection = connection;
 	}	
-	
+
 }

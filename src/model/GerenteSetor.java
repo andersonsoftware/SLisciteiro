@@ -1,13 +1,20 @@
 package model;
 
-public class GerenteSetor extends Funcionario{
-	private Setor setor;
+import java.util.ArrayList;
+import java.util.List;
 
-	public Setor getSetor() {
-		return setor;
+public class GerenteSetor extends Funcionario{
+	private List<Setor> setores;
+
+	public GerenteSetor() {
+		this.setSetores(new ArrayList<Setor> ());
+	}
+	
+	public List<Setor> getSetores() {
+		return setores;
 	}
 
-	public void setSetor(Setor setor) {
-		this.setor = setor;
+	public void setSetores(List<Setor> setores) {
+		this.setores = setores;
 	}
 }
