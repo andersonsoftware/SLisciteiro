@@ -1,7 +1,7 @@
 $(function(){
 	$('#add_produto').click(function() {
-		if($('#produto').val() === null){
-				alert('Por favor, selecione um produto!');
+		if($('#produto').val() === null || $('#quantidade_produto').val() === null || $('#quantidade_produto').val()<1 ){
+				alert('Por favor, selecione um produto e a quantidade!');
 				document.getElementById("produto").focus();
 		}else{
 			var options = '<tr><td>'+$('#produto').val()+'</td><td>'+$('#quantidade_produto').val()+'</td><td> <input type="button" value="Delete" class="btn btn-danger form-control" onclick="deleteRow(this.parentNode.parentNode.rowIndex)"> </td></tr>'
@@ -11,6 +11,11 @@ $(function(){
 			$.getJSON('set_session_produtos?jsonProdutos='+encoding_uri);
 		}
 	});
+});
+
+$(function(){
+	var today = new Date().toISOString().split('T')[0];
+	document.getElementsByName("data_fim")[0].setAttribute('min', today);
 });
 
 function carregarProdSession(data){
