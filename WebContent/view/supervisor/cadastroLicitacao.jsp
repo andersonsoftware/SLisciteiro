@@ -48,7 +48,7 @@
 				<div class="col-xs-6">
 					<label>Produto: </label> 
 					<select name="produto" id="produto" required class="form-control">
-					
+						<option value="" disabled="disabled" selected="selected">Selecione um produto</option>
 					</select>
 				</div>
 				<div class="col-xs-6">

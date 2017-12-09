@@ -43,16 +43,16 @@ function addListReturn(){
 
 $(function(){
 	$('#categoria').change(function() {
-		console.log("dsadsa");
 		$.getJSON('carregarProdutos?idCategoria='+1, function(data){
 			if(data !== null){
-				var options = '<option value="">Selecione um produto</option>';	
+				var options = '<option value="" disabled="disabled" selected="selected">Selecione um produto</option>';	
 				for (var i = 0; i < data.length; i++) {
 					options += '<option value="' + data[i].id+ '">' + data[i].nome + '</option>';
+					console.log(options);
 				}	
-				$('.complete_disciplinas').html(options).show();
+				$('#produto').html(options).show();
 			}else{
-				$('.complete_disciplinas').html('<option value="">Selecione um produto</option>').show();
+				$('#produto').html('<option value="" disabled="disabled" selected="selected">Selecione um produto</option>').show();
 			}
 		});
 	});
