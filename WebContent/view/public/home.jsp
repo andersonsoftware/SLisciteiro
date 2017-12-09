@@ -42,7 +42,7 @@
 					</thead>
 					<tbody>
 						<%
-							List<Licitacao> categorias = new CategoriaDAO().listar();
+							List<Licitacao> licitacao = new LicitacaoDAO();
 							for (Categoria categoria : categorias) {
 						%>
 						<tr>

@@ -1,10 +1,15 @@
 $(function(){
 	$('#add_produto').click(function() {
-		var options = '<tr><td>'+$('#produto').val()+'</td><td>'+$('#quantidade_produto').val()+'</td><td> <input type="button" value="Delete" class="btn btn-danger form-control" onclick="deleteRow(this.parentNode.parentNode.rowIndex)"> </td></tr>'
-		$('#conteudo_tab_produtos').append(options);
-		addListReturn();
-		var encoding_uri = encodeURI(document.getElementById('lista_produtos').value);
-		$.getJSON('set_session_produtos?jsonProdutos='+encoding_uri);
+		if($('#produto').val() === null){
+				alert('Por favor, selecione um produto!');
+				document.getElementById("produto").focus();
+		}else{
+			var options = '<tr><td>'+$('#produto').val()+'</td><td>'+$('#quantidade_produto').val()+'</td><td> <input type="button" value="Delete" class="btn btn-danger form-control" onclick="deleteRow(this.parentNode.parentNode.rowIndex)"> </td></tr>'
+			$('#conteudo_tab_produtos').append(options);
+			addListReturn();
+			var encoding_uri = encodeURI(document.getElementById('lista_produtos').value);
+			$.getJSON('set_session_produtos?jsonProdutos='+encoding_uri);
+		}
 	});
 });
 
@@ -43,6 +48,13 @@ function addListReturn(){
 
 $(function(){
 	$('#categoria').change(function() {
+		var tam = jQuery("#table_produtos tbody tr").length;
+		for(var j = tam-1; j>=0;j--){
+			document.getElementById('conteudo_tab_produtos').deleteRow(j);
+		}
+		addListReturn();
+		var encoding_uri = encodeURI(document.getElementById('lista_produtos').value);
+		$.getJSON('set_session_produtos?jsonProdutos='+encoding_uri);
 		$.getJSON('carregarProdutos?idCategoria='+1, function(data){
 			if(data !== null){
 				var options = '<option value="" disabled="disabled" selected="selected">Selecione um produto</option>';	
