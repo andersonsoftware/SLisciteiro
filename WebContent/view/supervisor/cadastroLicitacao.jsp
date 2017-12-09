@@ -1,10 +1,17 @@
+<%@page import="dao.CategoriaDAO"%>
+<%@page import="model.Categoria"%>
 <%@page import="model.Produto"%>
 <%@page import="java.util.ArrayList"%>
+<%@page import="java.util.List"%>
 <div class="container">
 	<%
 		if (session.getAttribute("listaProdutos") != null && !session.getAttribute("listaProdutos").equals("")) {
 	%>
 	<script type="text/javascript">
+		$(function(){
+			var today = new Date().toISOString().split('T')[0];
+			document.getElementsByName("data_fim")[0].setAttribute('min', today);
+		});
 		$(document).ready(function() {
 			var data =
 	<%=session.getAttribute("listaProdutos")%>
@@ -38,10 +45,16 @@
 		<div class="form-group">
 			<label>Categoria de Produtos: </label> <select name="categoria"
 				id="categoria" required class="form-control">
-				<option value="teste1">Teste1</option>
-				<option value="teste2">Teste2</option>
-				<option value="teste3">Teste3</option>
-				<option value="teste4">Teste4</option>
+				<option value="" disabled="disabled" selected="selected">Selecione
+					uma categoria</option>
+				<%
+					List<Categoria> categorias = new CategoriaDAO().listar();
+					for (Categoria categoria : categorias) {
+				%>
+				<option class="carregarProdCategoria" value="<%=categoria.getId()%>"><%=categoria.getNome()%></option>
+				<%
+					}
+				%>
 			</select>
 		</div>
 		<div class="form-group">
@@ -76,8 +89,8 @@
 			</table>
 		</div>
 		<div class="form-group">
-			<label>Data de Fim: </label> 
-			<input type="date" id="data_fim" class="form-control" name="data_fim" required autofocus>
+			<label>Data de Fim: </label> <input type="date" id="data_fim"
+				class="form-control" name="data_fim" required autofocus>
 		</div>
 		<div class="form-group">
 			<label>Valor Estimado: </label> <input type="text" id="money"

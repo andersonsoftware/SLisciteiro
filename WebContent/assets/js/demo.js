@@ -13,11 +13,6 @@ $(function(){
 	});
 });
 
-$(function(){
-	var today = new Date().toISOString().split('T')[0];
-	document.getElementsByName("data_fim")[0].setAttribute('min', today);
-});
-
 function carregarProdSession(data){
 	var produtos = data;
 	var options = '';
