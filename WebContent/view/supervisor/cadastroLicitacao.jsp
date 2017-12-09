@@ -37,10 +37,10 @@
 		<div class="form-group">
 			<label>Categoria de Produtos: </label> 
 			<select name="categoria" id="categoria"  required class="form-control">
-				<option class="carregarProdCategoria" value="teste1">Teste1</option>
-				<option class="carregarProdCategoria" value="teste2">Teste2</option>
-				<option class="carregarProdCategoria" value="teste3">Teste3</option>
-				<option class="carregarProdCategoria" value="teste4">Teste4</option>
+				<option value="teste1">Teste1</option>
+				<option value="teste2">Teste2</option>
+				<option value="teste3">Teste3</option>
+				<option value="teste4">Teste4</option>
 			</select>
 		</div>
 		<div class="form-group">
@@ -53,7 +53,7 @@
 				</div>
 				<div class="col-xs-6">
 					<label for="quantidade_produto">Quantidade:</label> <input
-						type="number" min=1 id="quantidade_produto" name="quantidade_produto"
+						type="number" min=1 value=1 id="quantidade_produto" name="quantidade_produto"
 						class="form-control ">
 				</div>
 			</div>
