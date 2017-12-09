@@ -3,7 +3,7 @@
 <br>
     <footer class="footer">
       <div class="container">
-        <p class="text-muted">© 2017 SLisciteiro</p>
+        <p class="text-muted">© 2017 SLiciteiro</p>
       </div>
     </footer>    
 	<script type="text/javascript" src="<%=Constantes.JS%>jquery.min.js"></script>

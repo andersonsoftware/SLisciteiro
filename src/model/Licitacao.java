@@ -1,6 +1,6 @@
 package model;
 
-import java.time.LocalDate;
+import java.sql.Date;
 import java.util.List;
 
 public class Licitacao {
@@ -9,8 +9,8 @@ public class Licitacao {
 	private float valor_estimado;
 	private Funcionario funcionario;
 	private List<Produto> produtos;
-	private LocalDate dataInicio;
-	private LocalDate dataFim;
+	private Date dataInicio;
+	private Date dataFim;
 	private Fornecedor fornecedor;
 	private boolean estado;
 	private boolean lancado;
@@ -56,22 +56,6 @@ public class Licitacao {
 		this.produtos = produtos;
 	}
 
-	public LocalDate getDataInicio() {
-		return dataInicio;
-	}
-
-	public void setDataInicio(LocalDate dataInicio) {
-		this.dataInicio = dataInicio;
-	}
-
-	public LocalDate getDataFim() {
-		return dataFim;
-	}
-
-	public void setDataFim(LocalDate dataFim) {
-		this.dataFim = dataFim;
-	}
-
 	public Fornecedor getFornecedor() {
 		return fornecedor;
 	}
@@ -102,6 +86,22 @@ public class Licitacao {
 
 	public void setCategoria(Categoria categoria) {
 		this.categoria = categoria;
+	}
+
+	public Date getDataInicio() {
+		return dataInicio;
+	}
+
+	public void setDataInicio(Date dataInicio) {
+		this.dataInicio = dataInicio;
+	}
+
+	public Date getDataFim() {
+		return dataFim;
+	}
+
+	public void setDataFim(Date dataFim) {
+		this.dataFim = dataFim;
 	}
 	
 	

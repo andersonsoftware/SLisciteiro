@@ -8,6 +8,10 @@
 		if (session.getAttribute("listaProdutos") != null && !session.getAttribute("listaProdutos").equals("")) {
 	%>
 	<script type="text/javascript">
+		$(function(){
+			var today = new Date().toISOString().split('T')[0];
+			document.getElementsByName("data_fim")[0].setAttribute('min', today);
+		});
 		$(document).ready(function() {
 			var data =
 	<%=session.getAttribute("listaProdutos")%>
@@ -47,8 +51,7 @@
 					List<Categoria> categorias = new CategoriaDAO().listar();
 					for (Categoria categoria : categorias) {
 				%>
-				<option class="carregarProdCategoria"
-					value="<%=categoria.getId()%>"><%=categoria.getNome()%></option>
+				<option value="<%=categoria.getId()%>"><%=categoria.getNome()%></option>
 				<%
 					}
 				%>
@@ -84,6 +87,10 @@
 				<tbody id="conteudo_tab_produtos">
 				</tbody>
 			</table>
+		</div>
+		<div class="form-group">
+			<label>Data de Fim: </label> <input type="date" id="data_fim"
+				class="form-control" name="data_fim" required autofocus>
 		</div>
 		<div class="form-group">
 			<label>Valor Estimado: </label> <input type="text" id="money"

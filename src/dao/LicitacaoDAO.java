@@ -31,15 +31,40 @@ public class LicitacaoDAO extends DAO {
 				licitacao.setCategoria(categoriaDAO.buscarPorId(rs.getInt("id_categoria")));
 				licitacao.setValor_estimado(rs.getFloat("valor_estimado"));
 				licitacao.setLancado(rs.getBoolean("lancado"));
-				licitacao.setDataInicio(rs.getDate("data_inicio").toLocalDate());
-				licitacao.setDataFim(rs.getDate("data_fim").toLocalDate());
-				licitacao.setFornecedor(fornecedorDAO.);rs.getDate("id_fornecedor");
+				licitacao.setDataInicio(rs.getDate("data_inicio"));
+				licitacao.setDataFim(rs.getDate("data_fim"));
+				licitacao.setFornecedor(fornecedorDAO.buscarPorId(rs.getInt("id_fornecedor")));
 				licitacao.setEstado(rs.getBoolean("estado"));
 				licitacoes.add(licitacao);
 			}
 			ps.close();
 			rs.close();
 			return licitacoes;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		} finally {
+			super.close();
+		}
+	}
+	
+	public void cadastrar(Licitacao licitacao) {
+		try {
+			super.open();
+			String SQL = "SELECT * FROM public.\"Licitacao\" (descricao, id_funcionario, id_categoria, valor_estimado, lancado, data_inicio,"
+					+ " data_fim, estado VALUES (?, ?, ?, ?, ?, ?, ?, ?);)";
+			PreparedStatement ps = super.getConnection().prepareStatement(SQL);
+			ps.setString(1, licitacao.getDescricao());
+			ps.setInt(2, licitacao.getFuncionario().getId());
+			ps.setInt(3, licitacao.getCategoria().getId());
+			ps.setFloat(4, licitacao.getValor_estimado());
+			ps.setBoolean(5, false);
+			ps.setDate(6, licitacao.getDataInicio());
+			ps.setDate(7, licitacao.getDataFim());
+			ps.setBoolean(8, false);
+			ResultSet rs = ps.executeQuery();
+			ps.close();
+			rs.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 			throw new RuntimeException(e);

@@ -1,7 +1,7 @@
 $(function(){
 	$('#add_produto').click(function() {
-		if($('#produto').val() === null){
-				alert('Por favor, selecione um produto!');
+		if($('#produto').val() === null || $('#quantidade_produto').val() === null || $('#quantidade_produto').val()<1 ){
+				alert('Por favor, selecione um produto e a quantidade!');
 				document.getElementById("produto").focus();
 		}else{
 			var options = '<tr><td>'+$('#produto').val()+'</td><td>'+$('#quantidade_produto').val()+'</td><td> <input type="button" value="Delete" class="btn btn-danger form-control" onclick="deleteRow(this.parentNode.parentNode.rowIndex)"> </td></tr>'
@@ -55,7 +55,7 @@ $(function(){
 		addListReturn();
 		var encoding_uri = encodeURI(document.getElementById('lista_produtos').value);
 		$.getJSON('set_session_produtos?jsonProdutos='+encoding_uri);
-		$.getJSON('carregarProdutos?idCategoria='+1, function(data){
+		$.getJSON('carregarProdutos?idCategoria='+$('#categoria').val(), function(data){
 			if(data !== null){
 				var options = '<option value="" disabled="disabled" selected="selected">Selecione um produto</option>';	
 				for (var i = 0; i < data.length; i++) {
