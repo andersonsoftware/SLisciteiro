@@ -3,17 +3,20 @@ package dao;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+
+import model.Conta;
 import model.Pessoa;
 import util.Crypter;
 
 public class PessoaDAO extends DAO{
 	public int addAndGetId(Pessoa pessoa){
 		try {			
-			String sql = "INSERT INTO public.\"Pessoa\" (nome, cpf, rg) VALUES (?, ?, ?) RETURNING id;";
+			String sql = "INSERT INTO public.\"Pessoa\" (nome, email, endereco, telefone) VALUES (?, ?, ?, ?) RETURNING id_pessoa;";
 			PreparedStatement stmt = getConn().prepareStatement(sql);	
 			stmt.setString(1, pessoa.getNome());
-//			stmt.setString(2, pessoa.getCpf());
-//			stmt.setString(3, pessoa.getRg());			
+			stmt.setString(2, pessoa.getEmail());
+			stmt.setString(3, pessoa.getEndereco());
+			stmt.setString(4, pessoa.getTelefone());
 			ResultSet rs = stmt.executeQuery();
 			rs.next();
 			int id = rs.getInt("id");		
@@ -24,12 +27,11 @@ public class PessoaDAO extends DAO{
 		}		
 	}
 	
-	public int getIdByCpfAndRg(String cpf, String rg){
+	public int getIdByEmail(String email){
 		try {
-			String sql = "SELECT id FROM public.\"Pessoa\" WHERE cpf = ? OR rg = ?;";			
+			String sql = "SELECT id FROM public.\"Pessoa\" WHERE email = ?;";			
 			PreparedStatement stmt = getConn().prepareStatement(sql);
-			stmt.setString(1, cpf);
-			stmt.setString(2, rg);			
+			stmt.setString(1, email);
 			ResultSet rs = stmt.executeQuery();
 			rs.next();
 			int id = rs.getInt("id");
@@ -42,12 +44,17 @@ public class PessoaDAO extends DAO{
 	
 	public Pessoa getById(int id){
 		try {
-			String sql = "SELECT * FROM public.\"Pessoa\" WHERE id = ? LIMIT 1;";			
+			String sql = "SELECT * FROM public.\"Pessoa\" WHERE id_pessoa = ? LIMIT 1;";			
 			PreparedStatement stmt = getConn().prepareStatement(sql);
 			stmt.setInt(1, id);					
 			ResultSet rs = stmt.executeQuery();
 			rs.next();		
 			Pessoa pessoa = new Pessoa();
+			pessoa.setId(id);
+			pessoa.setNome(rs.getString("nome"));
+			pessoa.setEmail(rs.getString("email"));
+			pessoa.setEndereco(rs.getString("endereco"));
+			pessoa.setTelefone(rs.getString("telefone"));
 			close(rs, stmt);			
 			return pessoa;
 		} catch (SQLException e) {
@@ -57,12 +64,13 @@ public class PessoaDAO extends DAO{
 	
 	public void editar(Pessoa pessoa){
 		try {
-			String sql = "UPDATE public.\"Pessoa\" SET nome = ?, cpf = ?, rg = ? WHERE id = ?;";
+			String sql = "UPDATE public.\"Pessoa\" SET nome = ?, email = ?, endereco = ?, telefone = ? WHERE id_pessoa = ?;";
 			PreparedStatement stmt = getConn().prepareStatement(sql);
 			stmt.setString(1, pessoa.getNome());
-//			stmt.setString(2, pessoa.getCpf());
-//			stmt.setString(3, pessoa.getRg());
-			stmt.setInt(4, pessoa.getId());			
+			stmt.setString(2, pessoa.getEmail());
+			stmt.setString(3, pessoa.getEndereco());
+			stmt.setString(4, pessoa.getTelefone());
+			stmt.setInt(5, pessoa.getId());			
 			stmt.execute();
 			stmt.close();
 		} catch (SQLException e) {
@@ -72,7 +80,7 @@ public class PessoaDAO extends DAO{
 	
 	public void excluir(int pessoa_id){
 		try {			
-			String sql = "DELETE FROM public.\"Pessoa\" WHERE id = ?;";
+			String sql = "DELETE FROM public.\"Pessoa\" WHERE id_pessoa = ?;";
 			PreparedStatement stmt = getConn().prepareStatement(sql);
 			stmt.setInt(1, pessoa_id);					
 			stmt.execute();
@@ -85,15 +93,21 @@ public class PessoaDAO extends DAO{
 	public Pessoa getPessoa(String login, String senha) {
 		try {
 			PreparedStatement stmt = getConn().prepareStatement(
-					"SELECT * FROM public.\"Pessoa\" as P CROSS JOIN public.\"Conta\" as C WHERE P.id = C.pessoa_id AND login = ? AND senha = ?;");
+					"SELECT * FROM public.\"Pessoa\" as P CROSS JOIN public.\"Conta\" as C WHERE P.id_pessoa = C.id_pessoa AND login = ? AND senha = ?;");
 			stmt.setString(1, login);			
 			stmt.setString(2, Crypter.crypt(senha));
 			ResultSet rs = stmt.executeQuery();
 			rs.next();
 			Pessoa pessoa = new Pessoa();
+			pessoa.setId(rs.getInt("id_pessoa"));
 			pessoa.setNome(rs.getString("nome"));
+			pessoa.setEmail(rs.getString("email"));
+			pessoa.setEndereco(rs.getString("endereco"));
+			pessoa.setTelefone(rs.getString("telefone"));
+			pessoa.setConta(new Conta());
 			pessoa.getConta().setLogin(rs.getString("login"));
 			pessoa.getConta().setSenha(rs.getString("senha"));
+			pessoa.getConta().setTipoConta(rs.getInt("tipo_usuario"));
 			close(rs, stmt);
 			return pessoa;
 		} catch (SQLException e) {

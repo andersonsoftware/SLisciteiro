@@ -1,6 +1,6 @@
 package model;
 
-public class GerenteSetor {
+public class GerenteSetor extends Funcionario{
 	private Setor setor;
 
 	public Setor getSetor() {

@@ -31,7 +31,11 @@ public class ContaDAO extends DAO {
 			stmt.setInt(1, pessoa_id);			
 			ResultSet rs = stmt.executeQuery();
 			rs.next();
-			Conta conta = new Conta(rs.getString("login"), rs.getString("senha"), null);
+			Conta conta = new Conta();
+			conta.setLogin(rs.getString("login"));
+			conta.setSenha(rs.getString("senha"));
+			conta.setTipoConta(rs.getInt("tipo_conta"));
+			conta.setPessoa(new PessoaDAO().getById(pessoa_id));
 			close(rs, stmt);
 			return conta;
 		} catch (SQLException e) {
@@ -67,6 +71,4 @@ public class ContaDAO extends DAO {
 			throw new RuntimeException(e);
 		}
 	}
-	
-	
 }
