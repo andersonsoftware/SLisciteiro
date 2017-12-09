@@ -1,5 +1,6 @@
 package model;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public class Licitacao {
@@ -8,6 +9,12 @@ public class Licitacao {
 	private float valor_estimado;
 	private Funcionario funcionario;
 	private List<Produto> produtos;
+	private LocalDate dataInicio;
+	private LocalDate dataFim;
+	private Fornecedor fornecedor;
+	private boolean estado;
+	private boolean lancado;
+	private Categoria categoria;
 	
 	public int getId() {
 		return id;
@@ -48,4 +55,54 @@ public class Licitacao {
 	public void setProdutos(List<Produto> produtos) {
 		this.produtos = produtos;
 	}
+
+	public LocalDate getDataInicio() {
+		return dataInicio;
+	}
+
+	public void setDataInicio(LocalDate dataInicio) {
+		this.dataInicio = dataInicio;
+	}
+
+	public LocalDate getDataFim() {
+		return dataFim;
+	}
+
+	public void setDataFim(LocalDate dataFim) {
+		this.dataFim = dataFim;
+	}
+
+	public Fornecedor getFornecedor() {
+		return fornecedor;
+	}
+
+	public void setFornecedor(Fornecedor fornecedor) {
+		this.fornecedor = fornecedor;
+	}
+
+	public boolean isEstado() {
+		return estado;
+	}
+
+	public void setEstado(boolean estado) {
+		this.estado = estado;
+	}
+
+	public boolean isLancado() {
+		return lancado;
+	}
+
+	public void setLancado(boolean lancado) {
+		this.lancado = lancado;
+	}
+
+	public Categoria getCategoria() {
+		return categoria;
+	}
+
+	public void setCategoria(Categoria categoria) {
+		this.categoria = categoria;
+	}
+	
+	
 }

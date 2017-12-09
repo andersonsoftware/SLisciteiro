@@ -1,5 +1,8 @@
+<%@page import="dao.CategoriaDAO"%>
+<%@page import="model.Categoria"%>
 <%@page import="model.Produto"%>
 <%@page import="java.util.ArrayList"%>
+<%@page import="java.util.List"%>
 <div class="container">
 	<%
 		if(session.getAttribute("listaProdutos")!= null && !session.getAttribute("listaProdutos").equals("")){
@@ -37,10 +40,15 @@
 		<div class="form-group">
 			<label>Categoria de Produtos: </label> 
 			<select name="categoria" id="categoria"  required class="form-control">
-				<option class="carregarProdCategoria" value="teste1">Teste1</option>
-				<option class="carregarProdCategoria" value="teste2">Teste2</option>
-				<option class="carregarProdCategoria" value="teste3">Teste3</option>
-				<option class="carregarProdCategoria" value="teste4">Teste4</option>
+				<option value="" disabled="disabled" selected="selected">Selecione uma categoria</option>
+				<% 
+				List<Categoria> categorias = new CategoriaDAO().listar();
+				for (Categoria categoria:categorias){
+				%>				
+				<option class="carregarProdCategoria" value="<%=categoria.getId() %>"><%=categoria.getNome() %></option>
+				<%
+				}
+				%>
 			</select>
 		</div>
 		<div class="form-group">

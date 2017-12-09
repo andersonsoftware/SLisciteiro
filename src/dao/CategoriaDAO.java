@@ -59,11 +59,12 @@ public class CategoriaDAO extends DAO {
 			PreparedStatement ps = super.getConnection().prepareStatement(SQL);			
 			ResultSet rs = ps.executeQuery();
 			List<Categoria> categorias = new ArrayList<Categoria>();
+			SetorDAO setorDAO = new SetorDAO();
 			if (rs.next()) {
 				Categoria categoria = new Categoria ();
 				categoria = new Categoria();
 				categoria.setNome(rs.getString("nome"));
-				categoria.setSetor(new SetorDAO().buscarPorId(rs.getInt("id_setor")));
+				categoria.setSetor(setorDAO.buscarPorId(rs.getInt("id_setor")));
 				categoria.setId(rs.getInt("id_categoria"));
 				categorias.add(categoria);
 			}
