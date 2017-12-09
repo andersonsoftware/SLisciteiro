@@ -15,6 +15,7 @@ public class Constantes {
 								CSS,
 								JS,
 								IMG;
+	public final static int QNTD_ITENS_PAGINA;
 								
 	static{
 		///URL = "http://lsca.ddns.net";
@@ -32,5 +33,6 @@ public class Constantes {
 		CSS = ASSETS+"css/";
 		JS = ASSETS+"js/";
 		IMG = ASSETS+"img/";
+		QNTD_ITENS_PAGINA = 20;
 	}
 }
