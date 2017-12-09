@@ -51,5 +51,31 @@ public class CategoriaDAO extends DAO {
 			super.close();
 		}
 	}
-		
+
+	public List<Categoria> listar() {
+		try {
+			super.open();
+			String SQL = "SELECT * FROM public.\"Categoria\";";
+			PreparedStatement ps = super.getConnection().prepareStatement(SQL);			
+			ResultSet rs = ps.executeQuery();
+			List<Categoria> categorias = new ArrayList<Categoria>();
+			if (rs.next()) {
+				Categoria categoria = new Categoria ();
+				categoria = new Categoria();
+				categoria.setNome(rs.getString("nome"));
+				categoria.setSetor(new SetorDAO().buscarPorId(rs.getInt("id_setor")));
+				categoria.setId(rs.getInt("id_categoria"));
+				categorias.add(categoria);
+			}
+			ps.close();
+			rs.close();
+			return categorias;			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		} finally {
+			super.close();
+		}
+	}
+	
 }
