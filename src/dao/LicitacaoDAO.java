@@ -20,13 +20,21 @@ public class LicitacaoDAO extends DAO {
 			ps.setInt(2, fim - inicio);
 			ResultSet rs = ps.executeQuery();
 			List<Licitacao> licitacoes = new ArrayList<Licitacao>();
-			SetorDAO setorDAO = new SetorDAO();
+			FuncionarioDAO funcionarioDAO = new FuncionarioDAO();
+			CategoriaDAO categoriaDAO = new CategoriaDAO();
+			FornecedorDAO fornecedorDAO = new FornecedorDAO();
 			if (rs.next()) {
 				Licitacao licitacao = new Licitacao();
-				licitacao = new Licitacao();
 				licitacao.setDescricao(rs.getString("descricao"));
-				licitacao.setId(rs.getInt("id"));
-				licitacao.setId(rs.getInt("id_categoria"));
+				licitacao.setId(rs.getInt("id_licitacao"));
+				licitacao.setFuncionario(funcionarioDAO.buscarPorId(rs.getInt("id_funcionario")));
+				licitacao.setCategoria(categoriaDAO.buscarPorId(rs.getInt("id_categoria")));
+				licitacao.setValor_estimado(rs.getFloat("valor_estimado"));
+				licitacao.setLancado(rs.getBoolean("lancado"));
+				licitacao.setDataInicio(rs.getDate("data_inicio").toLocalDate());
+				licitacao.setDataFim(rs.getDate("data_fim").toLocalDate());
+				licitacao.setFornecedor(fornecedorDAO.);rs.getDate("id_fornecedor");
+				licitacao.setEstado(rs.getBoolean("estado"));
 				licitacoes.add(licitacao);
 			}
 			ps.close();

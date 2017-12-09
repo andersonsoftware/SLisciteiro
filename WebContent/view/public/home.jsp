@@ -1,6 +1,7 @@
 <%@page import="dao.LicitacaoDAO"%>
 <%@page import="model.Licitacao"%>
 <%@page import="java.util.List"%>
+<%@page import="java.util.ArrayList"%>
 <div class="container">
 	<div class="row">
 		<div class="col-md-3">
@@ -42,8 +43,8 @@
 					</thead>
 					<tbody>
 						<%
-							List<Licitacao> licitacao = new LicitacaoDAO();
-							for (Categoria categoria : categorias) {
+							List<Licitacao> licitacao = LicitacaoDAO.listar();;
+							for (Licitacao categoria : categorias) {
 						%>
 						<tr>
 							<td><%=categoria.getId() %></td>
