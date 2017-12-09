@@ -85,5 +85,46 @@
     <servlet-name>ServletCadProduto</servlet-name>
     <url-pattern>/view/supervisor/cadastrar_produto</url-pattern>
   </servlet-mapping>
+  
+    <!-- Servlet Carregar Produtos da Categoria -->
+  <servlet>
+    <servlet-name>ServletCarregarProdCat</servlet-name>
+    <servlet-class>
+  		controller.CarregarProdutosCategoria
+  	</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ServletCarregarProdCat</servlet-name>
+    <url-pattern>/view/supervisor/carregarProdutos</url-pattern>
+  </servlet-mapping>
+  
+  <!-- Filtros -->  
+  <!-- Filtros 1-->
+  <filter>
+    <filter-name>AutenticationFilter</filter-name>
+    <filter-class>filter.AutenticationFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>AutenticationFilter</filter-name>
+    <url-pattern>/view/*</url-pattern>
+    <servlet-name>ServletCadCategoria</servlet-name>
+    <servlet-name>ServletLicitacao</servlet-name>
+    <servlet-name>ServletCadProduto</servlet-name>
+    <servlet-name>ServletCarregarProdCat</servlet-name>
+    <servlet-name>ServletLogout</servlet-name>
+    <servlet-name>ServletSetProdSession</servlet-name>
+  </filter-mapping>
 
+	<!-- Filtros 2-->
+  <filter>
+    <filter-name>LoginFilter</filter-name>
+    <filter-class>filter.LoginFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>LoginFilter</filter-name>
+    <url-pattern>/view/login.jsp</url-pattern>
+    <servlet-name>ServletLogin</servlet-name>
+  </filter-mapping>
+	
+	
 </web-app>

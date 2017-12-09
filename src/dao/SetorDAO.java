@@ -15,7 +15,7 @@ public class SetorDAO extends DAO {
 	public Setor buscarPorId(int id) {
 		try {
 			super.open();
-			String SQL = "SELECT * FROM setor WHERE id_setor = ?;";
+			String SQL = "SELECT * FROM public.\"Setor\" WHERE id_setor = ?;";
 			PreparedStatement ps = super.getConnection().prepareStatement(SQL);
 			ps.setInt(1, id);
 			ResultSet rs = ps.executeQuery();
@@ -23,7 +23,7 @@ public class SetorDAO extends DAO {
 			if (rs.next()) {
 				setor = new Setor();
 				setor.setNome(rs.getString("nome"));
-				setor.setTeto_gastos(rs.getFloat("tetoGasto"));
+				setor.setTeto_gastos(rs.getFloat("teto_gastos"));
 				setor.setGerente(new GerenteSetorDAO().buscarPorId(rs.getInt("id_gerente")));
 			}
 			super.close(rs, ps);
@@ -39,7 +39,7 @@ public class SetorDAO extends DAO {
 	public List<Setor> buscarPorGerente(GerenteSetor gerenteSetor) {
 		try {
 			super.open();
-			String SQL = "SELECT * FROM setor WHERE id_gerente = ?;";
+			String SQL = "SELECT * FROM public.\"Setor\" WHERE id_gerente = ?;";
 			PreparedStatement ps = super.getConnection().prepareStatement(SQL);
 			ps.setInt(1, gerenteSetor.getId());
 			ResultSet rs = ps.executeQuery();
@@ -47,7 +47,7 @@ public class SetorDAO extends DAO {
 			while (rs.next()) {
 				Setor setor = new Setor();
 				setor.setNome(rs.getString("nome"));
-				setor.setTeto_gastos(rs.getFloat("tetoGasto"));
+				setor.setTeto_gastos(rs.getFloat("teto_gastos"));
 				setor.setGerente(new GerenteSetorDAO().buscarPorId(rs.getInt("id_gerente")));
 				setores.add(setor);
 			}

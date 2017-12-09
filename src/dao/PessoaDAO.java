@@ -10,7 +10,8 @@ import util.Crypter;
 
 public class PessoaDAO extends DAO{
 	public int addAndGetId(Pessoa pessoa){
-		try {			
+		try {
+			super.open();
 			String sql = "INSERT INTO public.\"Pessoa\" (nome, email, endereco, telefone) VALUES (?, ?, ?, ?) RETURNING id_pessoa;";
 			PreparedStatement stmt = getConnection().prepareStatement(sql);	
 			stmt.setString(1, pessoa.getNome());
@@ -24,11 +25,14 @@ public class PessoaDAO extends DAO{
 			return id;					
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
+		}finally {
+			super.close();
 		}		
 	}
 	
 	public int getIdByEmail(String email){
 		try {
+			super.open();
 			String sql = "SELECT id FROM public.\"Pessoa\" WHERE email = ?;";			
 			PreparedStatement stmt = getConnection().prepareStatement(sql);
 			stmt.setString(1, email);
@@ -39,13 +43,15 @@ public class PessoaDAO extends DAO{
 			return id;
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
+		}finally {
+			super.close();
 		}
 	}
 	
 	public Pessoa buscarPorId(int id){
 		try {
 			super.open();
-			String sql = "SELECT * FROM Pessoa WHERE id_pessoa = ?;";			
+			String sql = "SELECT * FROM public.\"Pessoa\" WHERE id_pessoa = ?;";			
 			PreparedStatement stmt = super.getConnection().prepareStatement(sql);
 			stmt.setInt(1, id);					
 			ResultSet rs = stmt.executeQuery();					
@@ -69,6 +75,7 @@ public class PessoaDAO extends DAO{
 	
 	public void editar(Pessoa pessoa){
 		try {
+			super.open();
 			String sql = "UPDATE public.\"Pessoa\" SET nome = ?, email = ?, endereco = ?, telefone = ? WHERE id_pessoa = ?;";
 			PreparedStatement stmt = getConnection().prepareStatement(sql);
 			stmt.setString(1, pessoa.getNome());
@@ -80,11 +87,14 @@ public class PessoaDAO extends DAO{
 			stmt.close();
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
+		}finally {
+			super.close();
 		}
 	}
 	
 	public void excluir(int pessoa_id){
 		try {			
+			super.open();
 			String sql = "DELETE FROM public.\"Pessoa\" WHERE id_pessoa = ?;";
 			PreparedStatement stmt = getConnection().prepareStatement(sql);
 			stmt.setInt(1, pessoa_id);					
@@ -92,11 +102,14 @@ public class PessoaDAO extends DAO{
 			stmt.close();
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
+		}finally {
+			super.close();
 		}
 	}
 
 	public Pessoa getPessoa(String login, String senha) {
 		try {
+			super.open();
 			PreparedStatement stmt = getConnection().prepareStatement(
 					"SELECT * FROM public.\"Pessoa\" as P CROSS JOIN public.\"Conta\" as C WHERE P.id_pessoa = C.id_pessoa AND login = ? AND senha = ?;");
 			stmt.setString(1, login);			
@@ -117,6 +130,8 @@ public class PessoaDAO extends DAO{
 			return pessoa;
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
+		}finally {
+			super.close();
 		}
 	}
 	

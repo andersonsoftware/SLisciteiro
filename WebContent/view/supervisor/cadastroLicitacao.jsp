@@ -35,19 +35,20 @@
 				name="descricao" required autofocus>
 		</div>
 		<div class="form-group">
-			<label>Categoria de Produtos: </label> <select name="categoria"
-				id="categoria" required class="form-control">
-				<option value="">--- Selecione uma categoria ---</option>
-				<option value="xxxx">--- Categoria ---</option>
+			<label>Categoria de Produtos: </label> 
+			<select name="categoria" id="categoria"  required class="form-control">
+				<option class="carregarProdCategoria" value="teste1">Teste1</option>
+				<option class="carregarProdCategoria" value="teste2">Teste2</option>
+				<option class="carregarProdCategoria" value="teste3">Teste3</option>
+				<option class="carregarProdCategoria" value="teste4">Teste4</option>
 			</select>
 		</div>
 		<div class="form-group">
 			<div class="row">
 				<div class="col-xs-6">
-					<label>Produto: </label> <select name="produto"
-						id="produto" required class="form-control">
-						<option value="Sem Nome">--- Selecione um produto ---</option>
-						<option value="xxx">--- produto ---</option>
+					<label>Produto: </label> 
+					<select name="produto" id="produto" required class="form-control">
+					
 					</select>
 				</div>
 				<div class="col-xs-6">

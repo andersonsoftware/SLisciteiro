@@ -14,7 +14,7 @@ public class CategoriaDAO extends DAO {
 	public void cadastrar(Categoria categoria) {
 		try {
 			super.open();
-			String SQL = "INSERT INTO categoria(nome, id_setor) VALUES (?, ?);";
+			String SQL = "INSERT INTO public.\"Categoria\"(nome, id_setor) VALUES (?, ?);";
 			PreparedStatement ps = super.getConnection().prepareStatement(SQL);
 			ps.setString(1, categoria.getNome());
 			ps.setInt(2, categoria.getSetor().getId());
@@ -30,7 +30,7 @@ public class CategoriaDAO extends DAO {
 	public Categoria buscarPorId(int id) {
 		try {
 			super.open();
-			String SQL = "SELECT * FROM categoria WHERE id_categoria = ?;";
+			String SQL = "SELECT * FROM public.\"Categoria\" WHERE id_categoria = ?;";
 			PreparedStatement ps = super.getConnection().prepareStatement(SQL);
 			ps.setInt(1, id);
 			ResultSet rs = ps.executeQuery();

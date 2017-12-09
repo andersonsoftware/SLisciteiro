@@ -10,6 +10,7 @@ public class ContaDAO extends DAO {
 	
 	public boolean autenticar(String login, String senha) throws SQLException {
 		try {
+			super.open();
 			PreparedStatement stmt = this.getConnection().prepareStatement(
 					"SELECT COUNT(*) AS quantidade FROM public.\"Conta\" WHERE login = ? AND senha = ?;");
 			stmt.setString(1, login);
@@ -21,11 +22,14 @@ public class ContaDAO extends DAO {
 			return quantidade == 1;
 		} catch (SQLException e) {
 			throw new SQLException(e);
+		} finally {
+			super.close();
 		}
 	}
 	
 	public Conta getByPessoaId(int pessoa_id) {
 		try {
+			super.open();
 			PreparedStatement stmt = this.getConnection().prepareStatement(
 					"SELECT * AS quantidade FROM public.\"Conta\" WHERE pessoa_id = ?;");
 			stmt.setInt(1, pessoa_id);			
@@ -40,11 +44,14 @@ public class ContaDAO extends DAO {
 			return conta;
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
+		} finally {
+			super.close();
 		}
 	}
 		
 	public void add(Conta conta, int pessoa_id) {
 		try {
+			super.open();
 			PreparedStatement stmt = this.getConnection().prepareStatement(
 					"INSERT INTO public.\"Conta\" VALUES (?, ?, ?);");
 			stmt.setString(1, conta.getLogin());
@@ -54,12 +61,15 @@ public class ContaDAO extends DAO {
 		    stmt.close();
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
+		} finally {
+			super.close();
 		}
 	}
 	
 
 	public void editar(Conta conta){
 		try {
+			super.open();
 			String sql = "UPDATE public.\"Conta\" SET login = ?, senha = ? WHERE pessoa_id = ?;";		
 			PreparedStatement stmt = this.getConnection().prepareStatement(sql);
 			stmt.setString(1, conta.getLogin());			
@@ -69,6 +79,8 @@ public class ContaDAO extends DAO {
 			stmt.close();
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
+		} finally {
+			super.close();
 		}
 	}
 }

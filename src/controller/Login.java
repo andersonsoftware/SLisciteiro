@@ -23,7 +23,6 @@ public class Login extends HttpServlet {
 		HttpSession sessionVerify = (HttpSession) (((HttpServletRequest) request).getSession());
 		String pagina = "";
 		if (sessionVerify.getAttribute("usuario") == null) {
-			pagina = Constantes.ERROLOGIN;
 			String login_form = request.getParameter("login");
 			String senha_form = request.getParameter("senha");
 			ContaDAO conta = new ContaDAO();
@@ -34,8 +33,10 @@ public class Login extends HttpServlet {
 					HttpSession session = request.getSession();
 					session.setAttribute("usuario", pessoa);
 					request.setAttribute("sessao", session);
-					pagina = Constantes.SUPERVISORDIR+ "home.jsp";
+					pagina = Constantes.PUBLICDIR+"home.jsp";
 					pd.close();
+				}else{
+					pagina = Constantes.ERROLOGIN;
 				}
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -43,7 +44,7 @@ public class Login extends HttpServlet {
 			conta.close();
 			response.sendRedirect(pagina);
 		}else{
-			System.out.println(pagina);
+			pagina = Constantes.PUBLICDIR+"home.jsp";
 			response.sendRedirect(pagina);
 		}
 		
