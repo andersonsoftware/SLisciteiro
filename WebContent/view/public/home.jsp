@@ -5,8 +5,7 @@
 <%@page import="java.util.List"%>
 <%@page import="java.util.ArrayList"%>
 <%
-	int pagina = request.getParameter("pagina") == null ? 1
-			: Math.abs(Integer.valueOf(request.getParameter("pagina")));
+	int pagina = request.getParameter("pagina") == null ? 1	: Math.abs(Integer.valueOf(request.getParameter("pagina")));
 	int fim = pagina * Constantes.QNTD_ITENS_PAGINA;
 	int inicio = fim - Constantes.QNTD_ITENS_PAGINA;
 	LicitacaoDAO licitacaoDAO = new LicitacaoDAO();
@@ -57,7 +56,7 @@
 						<%
 							List<Licitacao> licitacoes = licitacaoDAO.listar(inicio, fim);
 							for (Licitacao licitacao : licitacoes) {
-								if (licitacao.getDescricao().contains("")) {
+								
 						%>
 						<tr>
 							<td><%=licitacao.getDescricao()%></td>
@@ -65,8 +64,7 @@
 							<td><%=licitacao.getDataFim()%></td>
 							<td><%=licitacao.getCategoria().getNome()%></td>
 						</tr>
-						<%
-							}
+						<%	
 							}
 						%>
 					</tbody>

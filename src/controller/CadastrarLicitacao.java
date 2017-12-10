@@ -2,6 +2,7 @@ package controller;
 
 import java.io.IOException;
 import java.sql.Date;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,12 +17,13 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 
 import dao.LicitacaoDAO;
+import dao.ProdutoDAO;
 import model.Categoria;
-import model.Fornecedor;
 import model.Funcionario;
+import model.Licitacao;
 import model.Pessoa;
 import model.Produto;
-import util.Constantes;
+import model.ProdutoLicitacao;
 
 public class CadastrarLicitacao extends HttpServlet{
 	/**
@@ -33,16 +35,20 @@ public class CadastrarLicitacao extends HttpServlet{
 			throws ServletException, IOException {
 		LicitacaoDAO ld = new LicitacaoDAO();
 		String descricao = request.getParameter("descricao");
-		//float valor_estimado = Float.parseFloat(request.getParameter("valor_estimado"));
+		float valor_estimado = Float.parseFloat(request.getParameter("valor_estimado"));
 		Funcionario funcionario = new Funcionario();
 		funcionario.setId(((Pessoa) request.getSession().getAttribute("usuario")).getId());
-		//Object produtos  = new Object(){String produto; float quantidade;};
-		List<Object> produto = new Gson().fromJson((String) request.getSession().getAttribute("listaProdutos"), new TypeToken<ArrayList<Object>>(){}.getType());
-		System.out.println(produtos.get(0));
-		//Date dataInicio = request.getParameter("");
-		//Date dataFim = request.getParameter("");
-		System.out.println(produtos.size());
+		List<ProdutoLicitacao> prodLic = new Gson().fromJson((String) request.getSession().getAttribute("listaProdutos"), new TypeToken<ArrayList<ProdutoLicitacao>>(){}.getType());
+		for(ProdutoLicitacao pl : prodLic){
+			Produto p = new ProdutoDAO().buscarPorNome(pl.getProduto());
+			pl.setProd(p);
+		}
+		Date dataInicio = Date.valueOf(LocalDate.now());
+		Date dataFim = Date.valueOf(request.getParameter("data_fim"));
 		Categoria categoria = new Categoria();
 		categoria.setId(Integer.parseInt(request.getParameter("categoria")));
+		Licitacao licitacao = new Licitacao(descricao, valor_estimado, funcionario, prodLic, dataInicio, dataFim, categoria);
+		licitacao.setProdutos(prodLic);
+		ld.cadastrar(licitacao);
 	}
 }

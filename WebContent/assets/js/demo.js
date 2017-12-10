@@ -59,7 +59,7 @@ $(function(){
 			if(data !== null){
 				var options = '<option value="" disabled="disabled" selected="selected">Selecione um produto</option>';	
 				for (var i = 0; i < data.length; i++) {
-					options += '<option value="' + data[i].id+ '">' + data[i].nome + '</option>';
+					options += '<option value="' + data[i].nome+ '">' + data[i].nome + '</option>';
 					console.log(options);
 				}	
 				$('#produto').html(options).show();

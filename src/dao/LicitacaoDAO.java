@@ -9,6 +9,7 @@ import java.util.List;
 import model.Categoria;
 import model.Licitacao;
 import model.Produto;
+import model.ProdutoLicitacao;
 
 public class LicitacaoDAO extends DAO {
 
@@ -18,7 +19,7 @@ public class LicitacaoDAO extends DAO {
 			String SQL = "SELECT * FROM public.\"Licitacao\" LIMIT ? OFFSET ?;";
 			PreparedStatement ps = super.getConnection().prepareStatement(SQL);
 			ps.setInt(1, fim);
-			ps.setInt(2, fim - inicio);
+			ps.setInt(2, inicio);
 			ResultSet rs = ps.executeQuery();
 			List<Licitacao> licitacoes = new ArrayList<Licitacao>();
 			FuncionarioDAO funcionarioDAO = new FuncionarioDAO();
@@ -49,11 +50,11 @@ public class LicitacaoDAO extends DAO {
 		}
 	}
 
-	public void cadastrar(Licitacao licitacao) {
+	public int cadastrar(Licitacao licitacao) {
 		try {
 			super.open();
-			String SQL = "SELECT * FROM public.\"Licitacao\" (descricao, id_funcionario, id_categoria, valor_estimado, lancado, data_inicio,"
-					+ " data_fim, estado) VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
+			String SQL = "INSERT INTO public.\"Licitacao\" (descricao, id_funcionario, id_categoria, valor_estimado, lancado, data_inicio,"
+					+ " data_fim, estado) VALUES (?, ?, ?, ?, ?, ?, ?, ?) RETURNING id_licitacao;";
 			PreparedStatement ps = super.getConnection().prepareStatement(SQL);
 			ps.setString(1, licitacao.getDescricao());
 			ps.setInt(2, licitacao.getFuncionario().getId());
@@ -64,8 +65,13 @@ public class LicitacaoDAO extends DAO {
 			ps.setDate(7, licitacao.getDataFim());
 			ps.setBoolean(8, false);
 			ResultSet rs = ps.executeQuery();
-			ps.close();
-			rs.close();
+			rs.next();
+			int id = rs.getInt("id_licitacao");
+			for(ProdutoLicitacao pl : licitacao.getProdutos()){
+				cadastrarProdLicitacao(pl, id);
+			}
+			close(rs, ps);
+			return id;
 		} catch (SQLException e) {
 			e.printStackTrace();
 			throw new RuntimeException(e);
@@ -84,6 +90,25 @@ public class LicitacaoDAO extends DAO {
 			int quantidade = rs.getInt("quantidade");
 			super.close(rs, ps);
 			return quantidade;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		} finally {
+			super.close();
+		}
+	}
+	
+	public void cadastrarProdLicitacao(ProdutoLicitacao produto, int idLicitacao) {
+		try {
+			super.open();
+			String SQL = "INSERT INTO public.\"LicitacaoProduto\" (id_licitacao, id_produto, quantidade) VALUES (?, ?, ?);";
+			PreparedStatement ps = super.getConnection().prepareStatement(SQL);
+			ps.setInt(1, idLicitacao);
+			ps.setInt(2, produto.getProd().getId());
+			ps.setInt(3, produto.getQuantidade());
+			ps.executeQuery();
+			ResultSet rs = ps.executeQuery();
+			super.close(rs, ps);
 		} catch (SQLException e) {
 			e.printStackTrace();
 			throw new RuntimeException(e);

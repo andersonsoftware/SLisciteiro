@@ -8,7 +8,7 @@ public class Licitacao {
 	private String descricao;
 	private float valor_estimado;
 	private Funcionario funcionario;
-	private List<Produto> produtos;
+	private List<ProdutoLicitacao> produtos;
 	private Date dataInicio;
 	private Date dataFim;
 	private Fornecedor fornecedor;
@@ -16,6 +16,38 @@ public class Licitacao {
 	private boolean lancado;
 	private Categoria categoria;
 	
+	public Licitacao(){
+		super();
+	}
+	
+	public Licitacao(String descricao, float valor_estimado, Funcionario funcionario, List<ProdutoLicitacao> produtos,
+			Date dataInicio, Date dataFim, Fornecedor fornecedor, boolean estado, boolean lancado,
+			Categoria categoria) {
+		super();
+		this.descricao = descricao;
+		this.valor_estimado = valor_estimado;
+		this.funcionario = funcionario;
+		this.produtos = produtos;
+		this.dataInicio = dataInicio;
+		this.dataFim = dataFim;
+		this.fornecedor = fornecedor;
+		this.estado = estado;
+		this.lancado = lancado;
+		this.categoria = categoria;
+	}
+
+	
+	public Licitacao(String descricao, float valor_estimado, Funcionario funcionario, List<ProdutoLicitacao> produtos,
+			Date dataInicio, Date dataFim, Categoria categoria) {
+		this.descricao = descricao;
+		this.valor_estimado = valor_estimado;
+		this.funcionario = funcionario;
+		this.produtos = produtos;
+		this.dataInicio = dataInicio;
+		this.dataFim = dataFim;
+		this.categoria = categoria;
+	}
+
 	public int getId() {
 		return id;
 	}
@@ -48,11 +80,11 @@ public class Licitacao {
 		this.funcionario = funcionario;
 	}
 
-	public List<Produto> getProdutos() {
+	public List<ProdutoLicitacao> getProdutos() {
 		return produtos;
 	}
 
-	public void setProdutos(List<Produto> produtos) {
+	public void setProdutos(List<ProdutoLicitacao> produtos) {
 		this.produtos = produtos;
 	}
 

@@ -42,7 +42,7 @@ $(document).ready(function() {
 	$("#cnpj").mask('00.000.000/0000-00');
 })
 
-$(document).ready(function($) {
+/*$(document).ready(function($) {
 	$("#money").maskMoney({
 		selectAllOnFocus: true,
 		prefix: "R$",
@@ -51,3 +51,4 @@ $(document).ready(function($) {
 	});
 })
 
+*/

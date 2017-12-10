@@ -49,6 +49,7 @@ public class ProdutoDAO extends DAO {
 			PreparedStatement ps = super.getConnection().prepareStatement(SQL);
 			ps.setString(1, nome);
 			ResultSet rs = ps.executeQuery();
+			rs.next();
 			Produto produto = new Produto();				
 			produto.setId(rs.getInt("id_produto"));
 			produto.setNome(rs.getString("nome"));
