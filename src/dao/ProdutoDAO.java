@@ -41,4 +41,28 @@ public class ProdutoDAO extends DAO {
 			super.close();
 		}
 	}
+	
+	public Produto buscarPorNome(String nome) {
+		try {
+			super.open();
+			String SQL = "SELECT * FROM public.\"Produto\" WHERE nome = ?;";
+			PreparedStatement ps = super.getConnection().prepareStatement(SQL);
+			ps.setString(1, nome);
+			ResultSet rs = ps.executeQuery();
+			Produto produto = new Produto();				
+			produto.setId(rs.getInt("id_produto"));
+			produto.setNome(rs.getString("nome"));
+			produto.setDescricao(rs.getString("descricao"));
+			produto.setCategoria(new CategoriaDAO().buscarPorId(rs.getInt("id_categoria")));
+			produto.setValor_estimado(rs.getFloat("valor_estimado"));
+			ps.close();
+			rs.close();
+			return produto;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new RuntimeException("Falha ao listar produtos", e);
+		} finally {
+			super.close();
+		}
+	}
 }

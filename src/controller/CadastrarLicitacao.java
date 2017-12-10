@@ -36,7 +36,8 @@ public class CadastrarLicitacao extends HttpServlet{
 		//float valor_estimado = Float.parseFloat(request.getParameter("valor_estimado"));
 		Funcionario funcionario = new Funcionario();
 		funcionario.setId(((Pessoa) request.getSession().getAttribute("usuario")).getId());
-		List<Produto> produtos = new Gson().fromJson((String) request.getSession().getAttribute("listaProdutos"), new TypeToken<ArrayList<Produto>>(){}.getType());
+		//Object produtos  = new Object(){String produto; float quantidade;};
+		List<Object> produto = new Gson().fromJson((String) request.getSession().getAttribute("listaProdutos"), new TypeToken<ArrayList<Object>>(){}.getType());
 		System.out.println(produtos.get(0));
 		//Date dataInicio = request.getParameter("");
 		//Date dataFim = request.getParameter("");
