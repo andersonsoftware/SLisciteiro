@@ -114,10 +114,12 @@ CREATE TABLE "FornecedorCategoria" (
 
 ALTER TABLE "FornecedorCategoria" OWNER TO postgres;
 
+
 --
 -- TOC entry 199 (class 1259 OID 17247)
 -- Name: Funcionario; Type: TABLE; Schema: public; Owner: postgres
 --
+
 
 CREATE TABLE "Funcionario" (
     id_funcionario integer NOT NULL,

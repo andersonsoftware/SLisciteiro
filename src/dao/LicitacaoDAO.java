@@ -25,7 +25,7 @@ public class LicitacaoDAO extends DAO {
 			FuncionarioDAO funcionarioDAO = new FuncionarioDAO();
 			CategoriaDAO categoriaDAO = new CategoriaDAO();
 			FornecedorDAO fornecedorDAO = new FornecedorDAO();
-			if (rs.next()) {
+			while (rs.next()) {
 				Licitacao licitacao = new Licitacao();
 				licitacao.setDescricao(rs.getString("descricao"));
 				licitacao.setId(rs.getInt("id_licitacao"));
@@ -149,6 +149,37 @@ public class LicitacaoDAO extends DAO {
 			ResultSet rs = ps.executeQuery();
 			super.close(rs, ps);
 		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		} finally {
+			super.close();
+		}
+	}
+
+	public Licitacao buscarPorId(int id) {
+		try {
+			super.open();
+			String SQL = "SELECT * FROM public.\"Licitacao\" WHERE id_licitacao = ?;";
+			PreparedStatement ps = super.getConnection().prepareStatement(SQL);
+			ps.setInt(1, id);
+			ResultSet rs = ps.executeQuery();
+			Licitacao licitacao = null;
+			if (rs.next()) {
+				licitacao = new Licitacao();
+				licitacao.setDescricao(rs.getString("descricao"));
+				licitacao.setId(rs.getInt("id_licitacao"));
+				licitacao.setFuncionario(new FuncionarioDAO().buscarPorId(rs.getInt("id_funcionario")));
+				licitacao.setCategoria(new CategoriaDAO().buscarPorId(rs.getInt("id_categoria")));
+				licitacao.setValor_estimado(rs.getFloat("valor_estimado"));
+				licitacao.setLancado(rs.getBoolean("lancado"));
+				licitacao.setDataInicio(rs.getDate("data_inicio"));
+				licitacao.setDataFim(rs.getDate("data_fim"));
+				licitacao.setFornecedor(new FornecedorDAO().buscarPorId(rs.getInt("id_fornecedor")));
+				licitacao.setEstado(rs.getBoolean("estado"));
+			}
+			super.close(rs, ps);
+			return licitacao;
+		} catch (SQLException e) {
+			e.printStackTrace();
 			throw new RuntimeException(e);
 		} finally {
 			super.close();
