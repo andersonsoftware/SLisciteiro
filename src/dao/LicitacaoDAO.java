@@ -106,7 +106,6 @@ public class LicitacaoDAO extends DAO {
 			ps.setInt(1, idLicitacao);
 			ps.setInt(2, produto.getProd().getId());
 			ps.setInt(3, produto.getQuantidade());
-			ps.executeQuery();
 			ResultSet rs = ps.executeQuery();
 			super.close(rs, ps);
 		} catch (SQLException e) {
