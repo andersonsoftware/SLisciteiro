@@ -61,7 +61,7 @@ public class CategoriaDAO extends DAO {
 			ResultSet rs = ps.executeQuery();
 			List<Categoria> categorias = new ArrayList<Categoria>();
 			SetorDAO setorDAO = new SetorDAO();
-			if (rs.next()) {
+			while (rs.next()) {
 				Categoria categoria = new Categoria ();
 				categoria = new Categoria();
 				categoria.setNome(rs.getString("nome"));
@@ -88,7 +88,7 @@ public class CategoriaDAO extends DAO {
 			ResultSet rs = ps.executeQuery();
 			List<Categoria> categorias = new ArrayList<Categoria>();
 			SetorDAO setorDAO = new SetorDAO();
-			if (rs.next()) {
+			while (rs.next()) {
 				Categoria categoria = new Categoria ();
 				categoria = new Categoria();
 				categoria.setNome(rs.getString("nome"));

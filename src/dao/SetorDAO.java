@@ -59,5 +59,29 @@ public class SetorDAO extends DAO {
 			super.close();
 		}
 	}
+	
+	public List<Setor> listar() {
+		try {
+			super.open();
+			String SQL = "SELECT * FROM public.\"Setor\";";
+			PreparedStatement ps = super.getConnection().prepareStatement(SQL);
+			ResultSet rs = ps.executeQuery();
+			List<Setor> setores = new ArrayList<Setor> ();
+			while (rs.next()) {
+				Setor setor = new Setor();
+				setor.setId(rs.getInt("id_setor"));
+				setor.setNome(rs.getString("nome"));
+				setor.setTeto_gastos(rs.getFloat("teto_gastos"));
+				setor.setGerente(new GerenteSetorDAO().buscarPorId(rs.getInt("id_gerente")));
+				setores.add(setor);
+			}
+			super.close(rs, ps);
+			return setores;			
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		} finally {
+			super.close();
+		}
+	}
 
 }

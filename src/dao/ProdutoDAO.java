@@ -7,7 +7,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import model.Categoria;
+import model.Licitacao;
 import model.Produto;
+import model.ProdutoLicitacao;
 
 public class ProdutoDAO extends DAO {
 	public List<Produto> buscarPorCategoria(Categoria categoria, int inicio, int fim) {
@@ -62,6 +64,25 @@ public class ProdutoDAO extends DAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 			throw new RuntimeException("Falha ao listar produtos", e);
+		} finally {
+			super.close();
+		}
+	}
+	
+	public void add(Produto produto) {
+		try {
+			super.open();
+			String SQL = "INSERT INTO public.\"Produto\" (nome, descricao, id_categoria, valor_estimado) VALUES (?, ?, ?, ?) ";
+			PreparedStatement ps = super.getConnection().prepareStatement(SQL);
+			ps.setString(1, produto.getNome());
+			ps.setString(2, produto.getDescricao());
+			ps.setInt(3, produto.getCategoria().getId());
+			ps.setFloat(4, produto.getValor_estimado());
+			ps.execute();
+			ps.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new RuntimeException(e);
 		} finally {
 			super.close();
 		}

@@ -24,6 +24,7 @@ import model.Licitacao;
 import model.Pessoa;
 import model.Produto;
 import model.ProdutoLicitacao;
+import util.Constantes;
 
 public class CadastrarLicitacao extends HttpServlet{
 	/**
@@ -39,6 +40,7 @@ public class CadastrarLicitacao extends HttpServlet{
 		Funcionario funcionario = new Funcionario();
 		funcionario.setId(((Pessoa) request.getSession().getAttribute("usuario")).getId());
 		List<ProdutoLicitacao> prodLic = new Gson().fromJson((String) request.getSession().getAttribute("listaProdutos"), new TypeToken<ArrayList<ProdutoLicitacao>>(){}.getType());
+		System.out.println(prodLic.size());
 		for(ProdutoLicitacao pl : prodLic){
 			Produto p = new ProdutoDAO().buscarPorNome(pl.getProduto());
 			pl.setProd(p);
@@ -50,5 +52,6 @@ public class CadastrarLicitacao extends HttpServlet{
 		Licitacao licitacao = new Licitacao(descricao, valor_estimado, funcionario, prodLic, dataInicio, dataFim, categoria);
 		licitacao.setProdutos(prodLic);
 		ld.cadastrar(licitacao);
+		response.sendRedirect(Constantes.SUPERVISORDIR+"cadastroLicitacao.jsp?licitacaoRealizada=1");
 	}
 }

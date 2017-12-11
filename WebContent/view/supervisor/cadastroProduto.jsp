@@ -1,3 +1,6 @@
+<%@page import="dao.CategoriaDAO"%>
+<%@page import="model.Categoria"%>
+<%@page import="java.util.List"%>
 <%@page import="java.util.HashMap"%>
 <%@page import="java.util.Set"%>
 <div class="container">
@@ -21,14 +24,27 @@
 					name="nome" class="form-control" required>
 			</div>
 			<div class="form-group">
+				<label for="descricao">Descrição:</label> <input type="Text" id="descircao"
+					name="descricao" class="form-control" required>
+			</div>
+			<div class="form-group">
 				<label for="valor_estimado">Valor Estimado:</label> <input
 					type="Text" id="money" name="valor_estimado"
 					class="form-control" required>
 			</div>
 			<div class="form-group">
-				<label>Categoria do Produto: </label> <select name="categoria"
-					id="categoria" required class="form-control" required>
-					<option value="">--- Selecione uma categoria ---</option>
+				<label>Categoria de Produtos: </label> <select name="categoria"
+				id="categoria" required class="form-control">
+				<option value="" disabled="disabled" selected="selected">Selecione
+					uma categoria</option>
+				<%
+					List<Categoria> categorias = new CategoriaDAO().listar();
+					for (Categoria categoria : categorias) {
+				%>
+				<option value="<%=categoria.getId()%>"><%=categoria.getNome()%></option>
+				<%
+					}
+				%>
 				</select>
 			</div>
 		<div class="form-group">
