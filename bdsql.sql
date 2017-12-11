@@ -256,6 +256,7 @@ CREATE SEQUENCE setor_id_seq
 
 ALTER TABLE setor_id_seq OWNER TO postgres;
 
+
 --
 -- TOC entry 201 (class 1259 OID 17273)
 -- Name: Setor; Type: TABLE; Schema: public; Owner: postgres
@@ -271,6 +272,37 @@ CREATE TABLE "Setor" (
 
 ALTER TABLE "Setor" OWNER TO postgres;
 
+
+--
+-- TOC entry 208 (class 1259 OID 17348)
+-- Name: oferta_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE oferta_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE oferta_id_seq OWNER TO postgres;
+
+
+--
+-- TOC entry 201 (class 1259 OID 17273)
+-- Name: Oferta; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE "Oferta" (
+    id_oferta integer DEFAULT nextval('oferta_id_seq'::regclass) NOT NULL,
+    if_fornecedor integer NOT NULL,
+    id_liscitacao integer NOT NULL,
+    valor real NOT NULL
+);
+
+
+ALTER TABLE "Oferta" OWNER TO postgres;
 
 --
 -- TOC entry 2906 (class 0 OID 0)
@@ -315,6 +347,15 @@ SELECT pg_catalog.setval('produto_id_seq', 3, true);
 --
 
 SELECT pg_catalog.setval('setor_id_seq', 1, true);
+
+
+--
+-- TOC entry 2906 (class 0 OID 0)
+-- Dependencies: 206
+-- Name: oferta_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('oferta_id_seq', 1, true);
 
 
 --
@@ -453,6 +494,15 @@ ALTER TABLE ONLY "Setor"
 
 
 --
+-- TOC entry 2741 (class 2606 OID 17289)
+-- Name: Oferta pk_id_oferta; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY "Oferta"
+    ADD CONSTRAINT pk_id_oferta PRIMARY KEY (id_oferta);
+    
+    
+--
 -- TOC entry 2733 (class 2606 OID 17253)
 -- Name: Funcionario rg; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
@@ -461,6 +511,15 @@ ALTER TABLE ONLY "Funcionario"
     ADD CONSTRAINT rg UNIQUE (rg);
 
 
+--
+-- TOC entry 2733 (class 2606 OID 17253)
+-- Name: Oferta rg; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY "Oferta"
+    ADD CONSTRAINT fornecedor_liscitacao UNIQUE (id_fornecedor, id_liscitacao);
+
+    
 --
 -- TOC entry 2755 (class 2606 OID 17402)
 -- Name: Licitacao fky_id_categoria; Type: FK CONSTRAINT; Schema: public; Owner: postgres
@@ -567,6 +626,24 @@ ALTER TABLE ONLY "FornecedorCategoria"
 
 ALTER TABLE ONLY "FornecedorCategoria"
     ADD CONSTRAINT id_fornecedor FOREIGN KEY (id_fornecedor) REFERENCES "Fornecedor"(id_fornecedor) ON UPDATE CASCADE ON DELETE CASCADE;
+
+
+--
+-- TOC entry 2763 (class 2606 OID 17392)
+-- Name: Oferta id_liscitacao; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY "Oferta"
+    ADD CONSTRAINT id_liscitacao FOREIGN KEY (id_liscitacao) REFERENCES "Licitacao"(id_licitacao) ON UPDATE CASCADE ON DELETE CASCADE;
+
+
+--
+-- TOC entry 2763 (class 2606 OID 17392)
+-- Name: Oferta id_fornecedor; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY "Oferta"
+    ADD CONSTRAINT id_fornecedor FOREIGN KEY (id_fornecedor) REFERENCES "Licitacao"(id_fornecedor) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 -- Completed on 2017-12-08 22:59:20
