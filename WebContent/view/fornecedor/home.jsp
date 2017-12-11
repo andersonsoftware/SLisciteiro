@@ -117,7 +117,7 @@
 				<p id="descricao">DESCRIÇÃO</p>
 				<p id="valor_estimado">VALOR ESTIMADO:</p>
 				<form id="form_cadastro_liscitacao" method="post" action="cadastrarOferta">
-					<label>ID: </label><input type="text" class="form-control" disabled name="id_licitacao" id="id_licitacao"/>
+					<label>ID: </label><input type="hidden" class="form-control" name="id_licitacao" id="id_licitacao"/>
 					<div class="form-group">
 						<label>Valor: </label> <input type="number" id="valor"
 							placeholder="Digite o valor da oferta" class="form-control"
