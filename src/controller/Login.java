@@ -11,6 +11,7 @@ import javax.servlet.http.HttpSession;
 import dao.ContaDAO;
 import dao.PessoaDAO;
 import model.Conta;
+import model.EnumTipoConta;
 import model.Funcionario;
 import model.Pessoa;
 import util.Constantes;
@@ -33,7 +34,11 @@ public class Login extends HttpServlet {
 					HttpSession session = request.getSession();
 					session.setAttribute("usuario", pessoa);
 					request.setAttribute("sessao", session);
-					pagina = Constantes.PUBLICDIR+"home.jsp";
+					if(pessoa.getConta().isTipoConta(EnumTipoConta.FORNECEDOR)){
+						pagina = Constantes.FORNECEDORDIR+"home.jsp";
+					}else{
+						pagina = Constantes.SUPERVISORDIR+"home.jsp";
+					}
 					pd.close();
 				}else{
 					pagina = Constantes.ERROLOGIN;
@@ -44,7 +49,7 @@ public class Login extends HttpServlet {
 			conta.close();
 			response.sendRedirect(pagina);
 		}else{
-			pagina = Constantes.PUBLICDIR+"home.jsp";
+			pagina = Constantes.SUPERVISORDIR+"home.jsp";
 			response.sendRedirect(pagina);
 		}
 		

@@ -93,6 +93,18 @@
     <servlet-name>ServletCadastrarOferta</servlet-name>
     <url-pattern>/view/fornecedor/cadastrarOferta</url-pattern>
   </servlet-mapping>
+  <servlet>
+  	<servlet-name>DetalheLicitacao</servlet-name>
+  	<servlet-class>
+  		controller.DetalheLicitacao
+  	</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DetalheLicitacao</servlet-name>
+    <url-pattern>/view/fornecedor/detalheLicitacao</url-pattern>
+  </servlet-mapping>
+  
+  
   <filter>
     <filter-name>AutenticationFilter</filter-name>
     <filter-class>filter.AutenticationFilter</filter-class>
@@ -115,5 +127,20 @@
     <filter-name>LoginFilter</filter-name>
     <url-pattern>/view/login.jsp</url-pattern>
     <servlet-name>ServletLogin</servlet-name>
+  </filter-mapping>
+  <filter>
+    <filter-name>FuncionarioFilter</filter-name>
+    <filter-class>filter.FuncionarioFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>FuncionarioFilter</filter-name>
+    <url-pattern>/view/gerenteCompras</url-pattern>
+    <url-pattern>/view/gerenteSetor</url-pattern>
+    <url-pattern>/view/supervisor</url-pattern>
+    <servlet-name>ServletCadCategoria</servlet-name>
+    <servlet-name>ServletLicitacao</servlet-name>
+    <servlet-name>ServletCadProduto</servlet-name>
+    <servlet-name>ServletCarregarProdCat</servlet-name>
+    <servlet-name>ServletSetProdSession</servlet-name>
   </filter-mapping>
 </web-app>

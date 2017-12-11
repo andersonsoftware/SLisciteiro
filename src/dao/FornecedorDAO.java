@@ -21,7 +21,7 @@ public class FornecedorDAO extends DAO {
 			Fornecedor fornecedor = null;
 			if (pessoa != null && rs.next()) {
 				fornecedor = new Fornecedor();
-				fornecedor.setNome(rs.getString("nome"));
+				fornecedor.setNome(pessoa.getNome());
 				fornecedor.setId(rs.getInt("id_fornecedor"));
 				fornecedor.setPontuacao(rs.getFloat("pontuacao"));
 				fornecedor.setCnpj(rs.getString("cnpj"));

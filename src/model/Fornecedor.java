@@ -4,7 +4,6 @@ import java.util.List;
 
 public class Fornecedor extends Pessoa {
 	private String cnpj;
-	private String endereco;
 	private Float pontuacao;
 	private ContaBancaria contaBancaria;
 	private List<Categoria> categorias;
@@ -15,14 +14,6 @@ public class Fornecedor extends Pessoa {
 
 	public void setCnpj(String cnpj) {
 		this.cnpj = cnpj;
-	}
-
-	public String getEndereco() {
-		return endereco;
-	}
-
-	public void setEndereco(String endereco) {
-		this.endereco = endereco;
 	}
 
 	public Float getPontuacao() {

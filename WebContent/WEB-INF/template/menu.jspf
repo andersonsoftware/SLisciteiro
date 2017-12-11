@@ -1,8 +1,11 @@
+<%@page import="model.EnumTipoConta"%>
+<%@page import="model.Pessoa"%>
 <%@page import="util.Constantes"%>
 <%@page import="model.EnumCargoFuncionario"%>
 <%@page import="model.Funcionario"%>
 <nav class="navbar navbar-inverse navbar-fixed-top">
 	<div class="container-fluid">
+		<%Pessoa pessoa = (Pessoa) request.getSession().getAttribute("usuario"); %>
 		<div class="navbar-header">
 			<button type="button" class="navbar-toggle collapsed"
 				data-toggle="collapse" data-target="#navbar" aria-expanded="false"
@@ -11,13 +14,23 @@
 					class="icon-bar"></span> <span class="icon-bar"></span> <span
 					class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="<%=Constantes.PUBLICDIR+"home.jsp" %>">SLiciteiro</a>
+			<%if(pessoa.getConta().isTipoConta(EnumTipoConta.FORNECEDOR)){ %>
+				<a class="navbar-brand" href="<%=Constantes.FORNECEDORDIR+"home.jsp" %>">SLiciteiro</a>
+			<%}else{ %>
+				<a class="navbar-brand" href="<%=Constantes.SUPERVISORDIR+"home.jsp" %>">SLiciteiro</a>
+			<%} %>
 		</div>
 		<div id="navbar" class="navbar-collapse collapse">
 			<ul class="nav navbar-nav navbar-right">
-				<li><a href="<%=Constantes.SUPERVISORDIR%>cadastroLicitacao.jsp">Cadastrar Licitação</a></li>
-				<li><a href="<%=Constantes.PUBLICDIR%>perfil.jsp">Perfil</a></li>
-				<li><a href="<%=Constantes.URL%>logout">Logout</a></li>
+				<%if(pessoa.getConta().isTipoConta(EnumTipoConta.FORNECEDOR)){ %>
+					<li><a href="<%=Constantes.PUBLICDIR%>perfil.jsp">Perfil</a></li>
+					<li><a href="<%=Constantes.URL%>logout">Logout</a></li>
+				<%}else{ %>
+					<li><a href="<%=Constantes.SUPERVISORDIR%>cadastroLicitacao.jsp">Cadastrar Licitação</a></li>
+					<li><a href="<%=Constantes.PUBLICDIR%>perfil.jsp">Perfil</a></li>
+					<li><a href="<%=Constantes.URL%>logout">Logout</a></li>	
+				<%} %>
+				
 			</ul>
 		</div>
 	</div>

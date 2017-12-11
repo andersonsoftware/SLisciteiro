@@ -69,3 +69,22 @@ $(function(){
 		});
 	});
 });
+
+$(function() {
+	var $btnDetalhes = $(".btn_detalhes");
+	$btnDetalhes.on('click', function($btnDetalhes) {
+		$.ajax({
+			type : "POST",
+			url : "/SLisciteiro/view/fornecedor/detalheLicitacao",
+			data : {
+				id : $btnDetalhes.currentTarget.attributes[2].nodeValue
+			},
+			success : function(data) {
+				$("#descricao").html('DESC: '+data.descricao);
+				$("#valor_estimado").html("VALOR ESTIMADO: "+data.valor_estimado);
+				$("#id_licitacao").val(data.id);
+			}
+		});
+	});
+
+});

@@ -14,6 +14,7 @@ import model.Fornecedor;
 import model.Licitacao;
 import model.Oferta;
 import model.Pessoa;
+import util.Constantes;
 
 /**
  * Servlet implementation class CadastrarOferta
@@ -42,6 +43,7 @@ public class CadastrarOferta extends HttpServlet {
 		}else {
 			//msg erro
 		}
+		response.sendRedirect(Constantes.FORNECEDORDIR+"home.jsp");
 	}
 
 }
