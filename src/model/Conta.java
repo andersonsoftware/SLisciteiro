@@ -14,6 +14,13 @@ public class Conta {
 		this.pessoa = pessoa;
 	}
 
+	public Conta(String login, String senha, EnumTipoConta tipoConta) {
+		super();
+		this.login = login;
+		this.senha = senha;
+		this.tipoConta = tipoConta;
+	}
+
 	public String getLogin() {
 		return login;
 	}

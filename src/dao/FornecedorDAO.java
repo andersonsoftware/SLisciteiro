@@ -23,7 +23,7 @@ public class FornecedorDAO extends DAO {
 				fornecedor = new Fornecedor();
 				fornecedor.setNome(pessoa.getNome());
 				fornecedor.setId(rs.getInt("id_fornecedor"));
-				fornecedor.setPontuacao(rs.getFloat("pontuacao"));
+				fornecedor.setPontuacao(rs.getInt("pontuacao"));
 				fornecedor.setCnpj(rs.getString("cnpj"));
 				ContaBancaria contaBancaria = new ContaBancaria();
 				contaBancaria.setAgencia(rs.getString("agencia_bancaria"));
@@ -41,6 +41,30 @@ public class FornecedorDAO extends DAO {
 			return fornecedor;			
 		} catch (SQLException e) {
 			e.printStackTrace();
+			throw new RuntimeException(e);
+		} finally {
+			super.close();
+		}
+	}
+
+	public void cadastrar(Fornecedor fornecedor) {
+		try {
+			super.open();
+			Pessoa pessoa = (Pessoa) fornecedor;
+			int id = new PessoaDAO().addAndGetId(pessoa);
+			new ContaDAO().add(fornecedor.getConta(), id);
+			String SQL = "INSERT INTO public.\"Fornecedor\"(id_fornecedor, cnpj, pontuacao, conta_bancaria, agencia_bancaria, tipo_conta, banco) VALUES (?, ?, ?, ?, ?, ?, ?);";
+			PreparedStatement ps = super.getConnection().prepareStatement(SQL);
+			ps.setInt(1, id);
+			ps.setString(2, fornecedor.getCnpj());
+			ps.setInt(3, 50);
+			ps.setString(4, fornecedor.getContaBancaria().getConta());
+			ps.setString(5, fornecedor.getContaBancaria().getAgencia());
+			ps.setString(6, fornecedor.getContaBancaria().getTipo());
+			ps.setString(7, fornecedor.getContaBancaria().getBanco());
+			ps.executeUpdate();
+			ps.close();
+		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		} finally {
 			super.close();

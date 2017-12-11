@@ -103,7 +103,16 @@
     <servlet-name>DetalheLicitacao</servlet-name>
     <url-pattern>/view/fornecedor/detalheLicitacao</url-pattern>
   </servlet-mapping>
-  
+  <servlet>
+    <servlet-name>ServletCadastrarLicitacao</servlet-name>
+    <servlet-class>
+  		controller.CadastrarFornecedor
+  	</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ServletCadastrarLicitacao</servlet-name>
+    <url-pattern>/cadastrar</url-pattern>
+  </servlet-mapping>
   
   <filter>
     <filter-name>AutenticationFilter</filter-name>

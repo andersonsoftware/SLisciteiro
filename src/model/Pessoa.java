@@ -1,12 +1,26 @@
 package model;
 
 public class Pessoa {
+	
 	private int id;
 	private String nome;
 	private String telefone;
 	private String email;
 	private String endereco;
 	private Conta conta;
+	
+	public Pessoa(String nome, String telefone, String email, String endereco, Conta conta) {
+		super();
+		this.nome = nome;
+		this.telefone = telefone;
+		this.email = email;
+		this.endereco = endereco;
+		this.conta = conta;
+	}
+
+	public Pessoa() {
+		super();
+	}
 	
 	public int getId() {
 		return id;

@@ -72,6 +72,12 @@
 		  Você não está logado: Faça o login para acessar o sistema.
 		</div> 		 
 		<%
+ 				} else if (request.getParameter("cadastrado") != null) {
+		 %>
+			 		<div class="alert alert-success" role="alert">
+						  Seu cadastro foi realizado e está aguardando aprovação!
+					</div> 		 
+		<%
  				}
  			}else{ 				
  		%>

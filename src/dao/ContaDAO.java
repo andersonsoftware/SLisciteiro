@@ -55,7 +55,7 @@ public class ContaDAO extends DAO {
 			PreparedStatement stmt = this.getConnection().prepareStatement(
 					"INSERT INTO public.\"Conta\" VALUES (?, ?, ?);");
 			stmt.setString(1, conta.getLogin());
-			stmt.setString(2, conta.getSenha());
+			stmt.setString(2, Crypter.crypt(conta.getSenha()));
 			stmt.setInt(3, pessoa_id);
 			stmt.execute();
 		    stmt.close();
