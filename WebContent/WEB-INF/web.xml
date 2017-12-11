@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:jsp="http://java.sun.com/xml/ns/javaee/jsp" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
   <display-name>SLisciteiro</display-name>
   <welcome-file-list>
-    <welcome-file>login.jsp</welcome-file>    
+    <welcome-file>login.jsp</welcome-file>
   </welcome-file-list>
   <jsp-config>
     <jsp-property-group>
@@ -13,8 +13,6 @@
       <include-coda>/WEB-INF/template/footer.jspf</include-coda>
     </jsp-property-group>
   </jsp-config>
-  
-  <!-- Servlet Login -->
   <servlet>
     <servlet-name>ServletLogin</servlet-name>
     <servlet-class>
@@ -25,8 +23,6 @@
     <servlet-name>ServletLogin</servlet-name>
     <url-pattern>/login</url-pattern>
   </servlet-mapping>
-  
-  <!-- Servlet Logout -->
   <servlet>
     <servlet-name>ServletLogout</servlet-name>
     <servlet-class>
@@ -37,8 +33,6 @@
     <servlet-name>ServletLogout</servlet-name>
     <url-pattern>/logout</url-pattern>
   </servlet-mapping>
-  
-   <!-- Servlet Licitacao -->
   <servlet>
     <servlet-name>ServletLicitacao</servlet-name>
     <servlet-class>
@@ -49,8 +43,6 @@
     <servlet-name>ServletLicitacao</servlet-name>
     <url-pattern>/view/supervisor/cadastrar_liscitacao</url-pattern>
   </servlet-mapping>
-  
-    <!-- Servlet Cadastra Categoria -->
   <servlet>
     <servlet-name>ServletCadCategoria</servlet-name>
     <servlet-class>
@@ -61,8 +53,6 @@
     <servlet-name>ServletCadCategoria</servlet-name>
     <url-pattern>/view/supervisor/cadastrar_categoria</url-pattern>
   </servlet-mapping>
-  
-  <!-- Servlet Adicionar Produtos na sessão -->
   <servlet>
     <servlet-name>ServletSetProdSession</servlet-name>
     <servlet-class>
@@ -73,8 +63,6 @@
     <servlet-name>ServletSetProdSession</servlet-name>
     <url-pattern>/view/supervisor/set_session_produtos</url-pattern>
   </servlet-mapping>
-  
-     <!-- Servlet Cadastra Produto -->
   <servlet>
     <servlet-name>ServletCadProduto</servlet-name>
     <servlet-class>
@@ -85,8 +73,6 @@
     <servlet-name>ServletCadProduto</servlet-name>
     <url-pattern>/view/supervisor/cadastrar_produto</url-pattern>
   </servlet-mapping>
-  
-    <!-- Servlet Carregar Produtos da Categoria -->
   <servlet>
     <servlet-name>ServletCarregarProdCat</servlet-name>
     <servlet-class>
@@ -97,9 +83,16 @@
     <servlet-name>ServletCarregarProdCat</servlet-name>
     <url-pattern>/view/supervisor/carregarProdutos</url-pattern>
   </servlet-mapping>
-  
-  <!-- Filtros -->  
-  <!-- Filtros 1-->
+  <servlet>
+    <servlet-name>ServletCadastrarOferta</servlet-name>
+    <servlet-class>
+  		controller.CadastrarOferta
+  	</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ServletCadastrarOferta</servlet-name>
+    <url-pattern>/view/fornecedor/cadastrarOferta</url-pattern>
+  </servlet-mapping>
   <filter>
     <filter-name>AutenticationFilter</filter-name>
     <filter-class>filter.AutenticationFilter</filter-class>
@@ -114,8 +107,6 @@
     <servlet-name>ServletLogout</servlet-name>
     <servlet-name>ServletSetProdSession</servlet-name>
   </filter-mapping>
-
-	<!-- Filtros 2-->
   <filter>
     <filter-name>LoginFilter</filter-name>
     <filter-class>filter.LoginFilter</filter-class>
@@ -125,6 +116,4 @@
     <url-pattern>/view/login.jsp</url-pattern>
     <servlet-name>ServletLogin</servlet-name>
   </filter-mapping>
-	
-	
 </web-app>
