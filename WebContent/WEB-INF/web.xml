@@ -104,6 +104,16 @@
     <url-pattern>/view/fornecedor/detalheLicitacao</url-pattern>
   </servlet-mapping>
   <servlet>
+  <servlet-name>ProdutosLicitacao</servlet-name>
+  	<servlet-class>
+  		controller.ProdutosLicitacao
+  	</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ProdutosLicitacao</servlet-name>
+    <url-pattern>/view/fornecedor/licitacaoProdutos</url-pattern>
+  </servlet-mapping>  
+  <servlet>
     <servlet-name>ServletCadastrarLicitacao</servlet-name>
     <servlet-class>
   		controller.CadastrarFornecedor

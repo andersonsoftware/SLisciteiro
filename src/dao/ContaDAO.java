@@ -53,10 +53,11 @@ public class ContaDAO extends DAO {
 		try {
 			super.open();
 			PreparedStatement stmt = this.getConnection().prepareStatement(
-					"INSERT INTO public.\"Conta\" VALUES (?, ?, ?);");
+					"INSERT INTO public.\"Conta\" VALUES (?, ?, ?, ?);");
 			stmt.setString(1, conta.getLogin());
 			stmt.setString(2, Crypter.crypt(conta.getSenha()));
 			stmt.setInt(3, pessoa_id);
+			stmt.setInt(4, conta.getTipoConta().getConta());
 			stmt.execute();
 		    stmt.close();
 		} catch (SQLException e) {

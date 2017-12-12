@@ -20,7 +20,7 @@ public class PessoaDAO extends DAO{
 			stmt.setString(4, pessoa.getTelefone());
 			ResultSet rs = stmt.executeQuery();
 			rs.next();
-			int id = rs.getInt("id");		
+			int id = rs.getInt("id_pessoa");		
 			close(rs, stmt);
 			return id;					
 		} catch (SQLException e) {
@@ -33,12 +33,12 @@ public class PessoaDAO extends DAO{
 	public int getIdByEmail(String email){
 		try {
 			super.open();
-			String sql = "SELECT id FROM public.\"Pessoa\" WHERE email = ?;";			
+			String sql = "SELECT id_pessoa FROM public.\"Pessoa\" WHERE email = ?;";			
 			PreparedStatement stmt = getConnection().prepareStatement(sql);
 			stmt.setString(1, email);
 			ResultSet rs = stmt.executeQuery();
 			rs.next();
-			int id = rs.getInt("id");
+			int id = rs.getInt("id_pessoa");
 			close(rs, stmt);
 			return id;
 		} catch (SQLException e) {

@@ -80,9 +80,25 @@ $(function() {
 				id : $btnDetalhes.currentTarget.attributes[2].nodeValue
 			},
 			success : function(data) {
-				$("#descricao").html('DESC: '+data.descricao);
-				$("#valor_estimado").html("VALOR ESTIMADO: "+data.valor_estimado);
+				$("#descricao").html('<b>DESC:</b> '+data.descricao);
+				$("#valor_estimado").html("<b>VALOR ESTIMADO:</b> "+data.valor_estimado);
 				$("#id_licitacao").val(data.id);
+			}
+		}),
+		$.ajax({
+			type : "POST",
+			url : "/SLisciteiro/view/fornecedor/licitacaoProdutos",
+			data : {
+				id : $btnDetalhes.currentTarget.attributes[2].nodeValue
+			},
+			success : function(data) {
+				var options = '';	
+				for (var i = 0; i < data.length; i++) {
+					options += 'NOME: '+data[i].nome +' <br>QUANTIDADE: '+data[i].id+'<br><br>';
+					console.log(options);
+				}
+				options+= '<br>'
+				$('#produtos').html(options).show();
 			}
 		});
 	});

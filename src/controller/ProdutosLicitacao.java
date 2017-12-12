@@ -1,17 +1,23 @@
 package controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 import dao.LicitacaoDAO;
+import dao.ProdutoDAO;
 import model.Licitacao;
+import model.Produto;
+import model.ProdutoLicitacao;
 
-public class DetalheLicitacao extends HttpServlet {
+public class ProdutosLicitacao extends HttpServlet {
 
 	/**
 	 * 
@@ -25,9 +31,10 @@ public class DetalheLicitacao extends HttpServlet {
 			int id = Integer.valueOf(codigo);
 			System.out.println("id: " + id);
 			try {
-				Licitacao licitacao = new LicitacaoDAO().buscarPorId(id);
+				ProdutoDAO pd = new ProdutoDAO();
+				List<Produto> produtos = pd.buscarPorLicitacao(id);
 				Gson gson = new Gson();
-				String json = gson.toJson(licitacao);
+				String json = gson.toJson(produtos);
 				System.out.println("json" + json);
 				response.setContentType("application/json");
 				response.getWriter().write(json);
