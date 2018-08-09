@@ -35,7 +35,7 @@
 
 	<form class="" id="form_cadastro_liscitacao" method="post"
 		action="cadastrar_liscitacao">
-		<h2>Cadastro de Liscitações</h2>
+		<h2>Cadastro de Licitações</h2>
 		<input type="hidden" name="lista_produtos" id="lista_produtos" />
 		<div class="form-group">
 			<label>Descrição: </label> <input type="text" id="descricao"

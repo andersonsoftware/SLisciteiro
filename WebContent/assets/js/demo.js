@@ -81,7 +81,6 @@ $(function() {
 			},
 			success : function(data) {
 				$("#descricao").html('<b>DESC:</b> '+data.descricao);
-				$("#valor_estimado").html("<b>VALOR ESTIMADO:</b> "+data.valor_estimado);
 				$("#id_licitacao").val(data.id);
 			}
 		}),
